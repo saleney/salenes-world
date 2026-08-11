@@ -22,14 +22,11 @@ h2 { font-size: clamp(2.2rem, 5vw, 4.1rem); }
 .map-title-row { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; padding: 0 9px 14px; }
 .map-title-row h2 { margin: 0; font-size: clamp(1.6rem, 3.6vw, 2.7rem); }
 .map-key { font-size: .57rem; line-height: 1.5; text-align: right; }
-.key-dot { display: inline-block; width: 9px; height: 9px; border: 1px solid #26392d; border-radius: 50%; background: #f36d54; }
-.key-dot.sleepy { background: #b7b19d; }
 .world-map { position: relative; min-height: calc(min(66vw, 690px) + 60px); overflow: hidden; border: 3px solid #26392d; background: radial-gradient(circle at 50% 47%, #e2e8c8 0 39%, #f8f0d9 40% 100%); isolation: isolate; }
 .globe { position: absolute; top: 42px; left: 50%; width: min(66vw, 690px); aspect-ratio: 1; transform: translateX(-50%); }
 .globe-canvas { position: absolute; z-index: 0; inset: 0; cursor: grab; touch-action: none; }
 .globe-canvas.is-turning { cursor: grabbing; }
 .globe-canvas canvas { display: block; width: 100% !important; height: 100% !important; filter: drop-shadow(18px 25px 18px rgba(38, 57, 45, .32)); }
-.globe-tip { position: absolute; z-index: 2; right: -42px; bottom: -3px; margin: 0; padding: 8px 10px; border: 1px solid rgba(38, 57, 45, .8); background: rgba(255, 250, 232, .84); box-shadow: 2px 2px 0 rgba(38, 57, 45, .75); font-size: .56rem; }
 .map-place { position: absolute; z-index: 1; display: flex; flex-direction: column; align-items: center; width: 118px; scroll-margin-top: 90px; border: 0; color: #26392d; background: transparent; cursor: pointer; text-shadow: 1px 1px #f5edcf; transform: translate(-50%, -55%); transition: transform 150ms ease, opacity 180ms ease; }
 .map-place:hover, .map-place[aria-pressed='true'] { transform: translate(-50%, calc(-55% - 8px)) rotate(-2deg); }
 .map-place:focus-visible { outline: 3px solid #f36d54; outline-offset: 6px; }
@@ -82,7 +79,6 @@ footer { display: flex; justify-content: space-between; gap: 20px; padding: 25px
   .map-place { width: 76px; }
   .place-art { width: 60px; height: 60px; padding: 4px; box-shadow: 2px 3px 0 rgba(38, 57, 45, .88); }
   .place-name { max-width: 94px; margin-top: 3px; padding: 2px 3px; font-size: .53rem; line-height: 1.08; white-space: normal; }
-  .globe-tip { right: 7px; bottom: 7px; padding: 6px 8px; font-size: .48rem; }
 
   .adventure-panel { margin-top: 48px; padding: 26px 16px; box-shadow: 5px 5px 0 #26392d; }
   .panel-game { padding: 22px 12px; }
@@ -91,4 +87,9 @@ footer { display: flex; justify-content: space-between; gap: 20px; padding: 25px
   .ingredient-list, .garden-choices { gap: 9px; }
   .ingredient, .garden-choice { padding: 11px 12px; }
   footer { display: block; }
+}
+
+@media (max-width: 480px) {
+  .world-map { min-height: calc(100vw - 56px); }
+  .globe { top: 10px; }
 }
