@@ -61,4 +61,34 @@ h2 { font-size: clamp(2.2rem, 5vw, 4.1rem); }
 .arcade-game { background: #f3c6aa; }.drafts-game { background: #ded1e8; }.aquarium-game { background: #b8d9df; }
 .visitor-game { background: #f2ddb2; text-align: left; }.visitor-game .object-label { text-align: center; }.visitor-note { max-width: 610px; margin: 0 auto 18px; font-family: Fraunces, Georgia, serif; font-size: clamp(1.05rem, 2.5vw, 1.45rem); line-height: 1.38; }.visitor-note:first-of-type { font-size: clamp(1.7rem, 4vw, 2.55rem); font-weight: 700; }.visitor-note-last { margin-bottom: 0; }
 footer { display: flex; justify-content: space-between; gap: 20px; padding: 25px 5vw; color: #fffae8; background: #26392d; font-size: .65rem; line-height: 1.5; }
-@media (max-width: 700px) { .top-message { display: none; }.world-map { min-height: max(520px, calc(min(112vw, 540px) + 75px)); }.globe { top: 52px; width: min(112vw, 540px); }.map-place { width: 86px; }.place-art { width: 72px; height: 72px; }.globe-tip { right: -18px; bottom: -3px; font-size: .5rem; }.map-title-row { display: block; }.map-key { text-align: left; }.place-name { padding: 2px 4px; font-size: .58rem; } footer { display: block; } }
+@media (max-width: 700px) {
+  .top-bar { min-height: 58px; padding: 8px 14px; }
+  .top-message { display: none; }
+  .site-mark { font-size: 1.08rem; }
+  .backpack { left: 14px; padding: 7px 9px; font-size: .58rem; }
+  .backpack-message { left: 14px; top: 55px; max-width: min(270px, calc(100vw - 28px)); }
+  main { padding: 38px 14px 62px; }
+  .world-intro { margin-bottom: 38px; }
+  h1 { font-size: clamp(3.1rem, 16vw, 4.35rem); }
+  .world-intro > p:last-child { font-size: .75rem; line-height: 1.7; }
+
+  .map-shell { padding: 10px; box-shadow: 5px 5px 0 #26392d; }
+  .map-title-row { display: block; padding: 2px 3px 10px; }
+  .map-title-row h2 { font-size: 1.75rem; }
+  .map-key { margin-top: 6px; font-size: .52rem; text-align: left; }
+  .world-map { min-height: calc(min(92vw, 430px) + 62px); }
+  .globe { top: 17px; width: min(calc(100% - 16px), 430px); }
+  .globe-canvas canvas { filter: drop-shadow(10px 15px 12px rgba(38, 57, 45, .28)); }
+  .map-place { width: 76px; }
+  .place-art { width: 60px; height: 60px; padding: 4px; box-shadow: 2px 3px 0 rgba(38, 57, 45, .88); }
+  .place-name { max-width: 94px; margin-top: 3px; padding: 2px 3px; font-size: .53rem; line-height: 1.08; white-space: normal; }
+  .globe-tip { right: 7px; bottom: 7px; padding: 6px 8px; font-size: .48rem; }
+
+  .adventure-panel { margin-top: 48px; padding: 26px 16px; box-shadow: 5px 5px 0 #26392d; }
+  .panel-game { padding: 22px 12px; }
+  .word-card { min-height: 270px; }
+  .heart { font-size: 6.2rem; }
+  .ingredient-list, .garden-choices { gap: 9px; }
+  .ingredient, .garden-choice { padding: 11px 12px; }
+  footer { display: block; }
+}
