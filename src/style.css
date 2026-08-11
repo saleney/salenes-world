@@ -58,8 +58,8 @@ h2 { font-size: clamp(2.2rem, 5vw, 4.1rem); }
 .arcade-game { background: #f3c6aa; }.drafts-game { background: #ded1e8; }.aquarium-game { background: #b8d9df; }
 .visitor-game { background: #f2ddb2; text-align: left; }.visitor-game .object-label { text-align: center; }.visitor-note { max-width: 610px; margin: 0 auto 18px; font-family: Fraunces, Georgia, serif; font-size: clamp(1.05rem, 2.5vw, 1.45rem); line-height: 1.38; }.visitor-note:first-of-type { font-size: clamp(1.7rem, 4vw, 2.55rem); font-weight: 700; }.visitor-note-last { margin-bottom: 0; }
 footer { display: flex; justify-content: space-between; gap: 20px; padding: 25px 5vw; color: #fffae8; background: #26392d; font-size: .65rem; line-height: 1.5; }
-.salene-home-link { display: inline-block; margin-top: 9px; color: #fffae8; text-decoration: none; }
-.salene-home-link:hover, .salene-home-link:focus-visible { color: #f8d279; text-decoration: underline; outline: none; }
+.salene-home-link { display: inline-block; margin-top: 12px; padding: 8px 11px; border: 2px solid #293c3b; border-radius: 999px; color: #293c3b; background: #fffdf7; box-shadow: 2px 2px 0 #293c3b; font-size: 10px; text-decoration: none; }
+.salene-home-link:hover, .salene-home-link:focus-visible { color: #293c3b; background: #ffe477; text-decoration: none; outline: 2px solid #293c3b; outline-offset: 2px; }
 @media (max-width: 700px) {
   .top-bar { min-height: 58px; padding: 8px 14px; }
   .top-message { display: none; }
