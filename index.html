@@ -20,151 +20,33 @@
       </section>
 
       <section class="map-shell" id="world-map" aria-labelledby="map-title">
-        <div class="map-title-row">
-          <h2 id="map-title">Where would you like to wander?</h2>
-          <p class="map-key">↔ &nbsp;↕ &nbsp; drag the world in every direction</p>
-        </div>
-
-        <div class="world-map" aria-label="Map of Salene's Internet Playground">
-          <div class="globe" id="globe" aria-label="Interactive globe. Drag the water to turn it.">
-          <div class="globe-canvas" id="globe-canvas" aria-hidden="true"></div>
-          <div id="map-places"></div>
-          </div>
-        </div>
+        <div class="map-title-row"><h2 id="map-title">Where would you like to wander?</h2><p class="map-key">↔ &nbsp;↕ &nbsp; drag the world in every direction</p></div>
+        <div class="world-map" aria-label="Map of Salene's Internet Playground"><div class="globe" id="globe" aria-label="Interactive globe. Drag the water to turn it."><div class="globe-canvas" id="globe-canvas" aria-hidden="true"></div><div id="map-places"></div></div></div>
       </section>
 
       <section class="adventure-panel" id="first-room" aria-live="polite">
-        <p class="eyebrow" id="panel-kicker">YOU FOUND A TINY WONDER</p>
-        <h2 id="panel-title">The Body Cabinet</h2>
-        <p class="panel-copy" id="panel-copy">Your body is busy doing astonishing things, even while you are reading this sentence.</p>
+        <p class="eyebrow" id="panel-kicker">THE DOOR IS OPEN. THE LIGHT IS ON.</p>
+        <h2 id="panel-title">The Visitor Center</h2>
+        <p class="panel-copy" id="panel-copy">A small note about the person who built this world, and the things she is trying to practice inside it.</p>
 
-        <div class="panel-game" id="heart-game">
-          <p class="object-label">OBJECT: YOUR BODY, RIGHT NOW</p>
-          <button class="heart-button" id="heart-button" type="button" aria-describedby="heart-fact">
-            <span class="heart" aria-hidden="true">♥</span>
-            <span>Press for a pulse</span>
-          </button>
-          <p class="fact" id="heart-fact">Your heart beats roughly 100,000 times a day, without you having to remember.</p>
-        </div>
-
-        <div class="panel-game" id="question-game" hidden>
-          <p class="object-label">A QUESTION HAS APPEARED IN THE UNDERBRUSH</p>
-          <button class="question-button" id="question-button" type="button">Turn over a leaf</button>
-          <p class="question" id="question">What would you like to notice more carefully today?</p>
-        </div>
-
-        <div class="panel-game word-game" id="word-game" hidden>
-          <p class="object-label">WORD WOODS FIELD GUIDE · TAP THE CARD WHEN YOU'RE READY</p>
-          <button class="word-card" id="word-card" type="button" aria-expanded="false" aria-describedby="word-hint">
-            <span class="word-sprout" aria-hidden="true">✿</span>
-            <span class="hanzi" id="word-hanzi">朋友</span>
-            <span class="pinyin" id="word-pinyin">péngyou</span>
-            <span class="word-prompt" id="word-hint">What do you think this word might mean?</span>
-            <span class="word-meaning" id="word-meaning" hidden>friend</span>
-          </button>
-          <button class="next-word" id="next-word" type="button" hidden>Grow another word <span aria-hidden="true">↗</span></button>
-          <p class="tiny-note">Learning a language is collecting new ways to notice people and the world.</p>
-        </div>
-
-        <div class="panel-game soup-game" id="soup-game" hidden>
-          <p class="object-label">TODAY'S RECIPE: A LITTLE MORE CONNECTION</p>
-          <p class="soup-instruction">Choose one ingredient. There is no perfect recipe.</p>
-          <div class="ingredient-list" role="group" aria-label="Choose a friendship ingredient">
-            <button class="ingredient" type="button" data-ingredient="notice">notice something specific</button>
-            <button class="ingredient" type="button" data-ingredient="invite">make a small invitation</button>
-            <button class="ingredient" type="button" data-ingredient="return">come back to the conversation</button>
-          </div>
-          <div class="soup-result" id="soup-result" hidden aria-live="polite">
-            <span aria-hidden="true">♨</span>
-            <p id="soup-message"></p>
-          </div>
-          <p class="tiny-note">Good soup is not rushed. Neither is friendship.</p>
-        </div>
-
-        <div class="panel-game beauty-game" id="beauty-game" hidden>
-          <p class="object-label">THE BEAUTY EXCHANGE · NO PURCHASE NECESSARY</p>
-          <div class="beauty-window" aria-live="polite">
-            <span class="beauty-sparkle" aria-hidden="true">✦</span>
-            <p id="beauty-prompt">A beautiful thing is waiting behind the little window.</p>
-          </div>
-          <button class="beauty-button" id="beauty-button" type="button">Open the little window</button>
-          <p class="tiny-note">Beauty matters most when it is noticed—and becomes even better when it is shared.</p>
-        </div>
-
-        <div class="panel-game grief-game" id="grief-game" hidden>
-          <p class="object-label">THE GRIEF GARDEN · NOTHING NEEDS TO BE SOLVED HERE</p>
-          <p class="grief-intro">Grief and joy can share a body. Tenderness is allowed to take its time.</p>
-          <div class="garden-choices" role="group" aria-label="Choose a way to sit in the garden">
-            <button class="garden-choice" type="button" data-garden-choice="name">name what you miss</button>
-            <button class="garden-choice" type="button" data-garden-choice="stay">stay with someone</button>
-            <button class="garden-choice" type="button" data-garden-choice="soften">let joy visit too</button>
-          </div>
-          <p class="garden-response" id="garden-response" hidden aria-live="polite"></p>
-          <p class="tiny-note"><em>In loving memory of Richard. Our hearts sing for you forevermore.</em></p>
-        </div>
-
-        <div class="panel-game coming-soon" id="coming-soon" hidden>
-          <p class="object-label">THIS PART OF THE MAP IS STILL BEING DRAWN</p>
-          <p class="fact" id="coming-soon-text">A future rabbit hole is taking shape here.</p>
-          <p class="tiny-note">The best worlds are allowed to be unfinished.</p>
-        </div>
-
-        <div class="panel-game curiosity-game" id="curiosity-game" hidden>
-          <p class="object-label">SPECIMEN DRAWER · NOTHING HERE HAS TO BE USEFUL</p>
-          <button class="wonder-button" id="curiosity-button" type="button">Open a specimen drawer</button>
-          <p class="fact" id="curiosity-fact">A question is a small door. You are allowed to open it just because it is there.</p>
-          <p class="tiny-note">Follow one thread. See what it teaches you to notice.</p>
-        </div>
-
-        <div class="panel-game post-game" id="post-game" hidden>
-          <p class="object-label">AIRMAIL FOR SOMEONE YOU KEEP IN YOUR HEART</p>
-          <button class="wonder-button" id="post-button" type="button">Stamp a tiny note</button>
-          <p class="fact" id="post-prompt">A real message can be very small: “This made me think of you.”</p>
-          <p class="tiny-note">Connection grows through returning, noticing, and letting people know they matter.</p>
-        </div>
-
-        <div class="panel-game courage-game" id="courage-game" hidden>
-          <p class="object-label">THE TELESCOPE IS POINTED AT YOUR NEXT BRAVE THING</p>
-          <button class="wonder-button" id="courage-button" type="button">Turn the telescope</button>
-          <p class="fact" id="courage-prompt">You do not need to feel ready in order to take one honest step.</p>
-          <p class="tiny-note">Courage is often just conviction with a wobbly voice.</p>
-        </div>
-
-        <div class="panel-game arcade-game" id="arcade-game" hidden>
-          <p class="object-label">TWO-PLAYER MODE · NO HIGH SCORES, ONLY CONNECTION</p>
-          <button class="wonder-button" id="arcade-button" type="button">Insert one friendship token</button>
-          <p class="fact" id="arcade-prompt">Invite someone into a small shared moment. That counts as play.</p>
-          <p class="tiny-note">The best games make more room for each other.</p>
-        </div>
-
-        <div class="panel-game drafts-game" id="drafts-game" hidden>
-          <p class="object-label">WELCOME. YOUR FIRST TRY MAY BE WONDERFULLY BAD.</p>
-          <button class="wonder-button" id="draft-button" type="button">Pull a brave little prompt</button>
-          <p class="fact" id="draft-prompt">Make something too small and silly to be impressive. Begin there.</p>
-          <p class="tiny-note">A first draft is proof that a blank page did not win.</p>
-        </div>
-
-        <div class="panel-game aquarium-game" id="aquarium-game" hidden>
-          <p class="object-label">THE QUESTIONS ARE SWIMMING PAST. CATCH ONE GENTLY.</p>
-          <button class="wonder-button" id="aquarium-button" type="button">Catch a wild question</button>
-          <p class="fact" id="aquarium-question">Can fish get thirsty?</p>
-          <p class="tiny-note">You do not have to answer every question. Some are good companions.</p>
-        </div>
-
-        <div class="panel-game visitor-game" id="visitor-game" hidden>
-          <p class="object-label">A NOTE FROM SALENE · YOU MAY TAKE A MAP, OR IGNORE IT COMPLETELY</p>
-          <p class="visitor-note">Welcome to my world.</p>
-          <p class="visitor-note">I made this place because I believe curiosity deserves somewhere to play. I like strange questions, small acts of care, and beautiful ordinary things. I am trying to live softly and bravely: to love people deeply, trust what I care about, do things scared, and let life change me.</p>
-          <p class="visitor-note visitor-note-last">This is my world made from those attempts. There is no right route through it. Follow what catches your attention. Take what you need. Leave with a new question.</p>
-        </div>
+        <div class="panel-game" id="heart-game" hidden><p class="object-label">OBJECT: YOUR BODY, RIGHT NOW</p><button class="heart-button" id="heart-button" type="button" aria-describedby="heart-fact"><span class="heart" aria-hidden="true">♥</span><span>Press for a pulse</span></button><p class="fact" id="heart-fact">Your heart beats roughly 100,000 times a day, without you having to remember.</p></div>
+        <div class="panel-game" id="question-game" hidden><p class="object-label">A QUESTION HAS APPEARED IN THE UNDERBRUSH</p><button class="question-button" id="question-button" type="button">Turn over a leaf</button><p class="question" id="question">What would you like to notice more carefully today?</p></div>
+        <div class="panel-game word-game" id="word-game" hidden><p class="object-label">WORD WOODS FIELD GUIDE · TAP THE CARD WHEN YOU'RE READY</p><button class="word-card" id="word-card" type="button" aria-expanded="false" aria-describedby="word-hint"><span class="word-sprout" aria-hidden="true">✿</span><span class="hanzi" id="word-hanzi">朋友</span><span class="pinyin" id="word-pinyin">péngyou</span><span class="word-prompt" id="word-hint">What do you think this word might mean?</span><span class="word-meaning" id="word-meaning" hidden>friend</span></button><button class="next-word" id="next-word" type="button" hidden>Grow another word <span aria-hidden="true">↗</span></button><p class="tiny-note">Learning a language is collecting new ways to notice people and the world.</p></div>
+        <div class="panel-game soup-game" id="soup-game" hidden><p class="object-label">TODAY'S RECIPE: A LITTLE MORE CONNECTION</p><p class="soup-instruction">Choose one ingredient. There is no perfect recipe.</p><div class="ingredient-list" role="group" aria-label="Choose a friendship ingredient"><button class="ingredient" type="button" data-ingredient="notice">notice something specific</button><button class="ingredient" type="button" data-ingredient="invite">make a small invitation</button><button class="ingredient" type="button" data-ingredient="return">come back to the conversation</button></div><div class="soup-result" id="soup-result" hidden aria-live="polite"><span aria-hidden="true">♨</span><p id="soup-message"></p></div><p class="tiny-note">Good soup is not rushed. Neither is friendship.</p></div>
+        <div class="panel-game beauty-game" id="beauty-game" hidden><p class="object-label">THE BEAUTY EXCHANGE · NO PURCHASE NECESSARY</p><div class="beauty-window" aria-live="polite"><span class="beauty-sparkle" aria-hidden="true">✦</span><p id="beauty-prompt">A beautiful thing is waiting behind the little window.</p></div><button class="beauty-button" id="beauty-button" type="button">Open the little window</button><p class="tiny-note">Beauty matters most when it is noticed—and becomes even better when it is shared.</p></div>
+        <div class="panel-game grief-game" id="grief-game" hidden><p class="object-label">THE GRIEF GARDEN · NOTHING NEEDS TO BE SOLVED HERE</p><p class="grief-intro">Grief and joy can share a body. Tenderness is allowed to take its time.</p><div class="garden-choices" role="group" aria-label="Choose a way to sit in the garden"><button class="garden-choice" type="button" data-garden-choice="name">name what you miss</button><button class="garden-choice" type="button" data-garden-choice="stay">stay with someone</button><button class="garden-choice" type="button" data-garden-choice="soften">let joy visit too</button></div><p class="garden-response" id="garden-response" hidden aria-live="polite"></p><p class="tiny-note"><em>In loving memory of Richard. Our hearts sing for you forevermore.</em></p></div>
+        <div class="panel-game coming-soon" id="coming-soon" hidden><p class="object-label">THIS PART OF THE MAP IS STILL BEING DRAWN</p><p class="fact" id="coming-soon-text">A future rabbit hole is taking shape here.</p><p class="tiny-note">The best worlds are allowed to be unfinished.</p></div>
+        <div class="panel-game curiosity-game" id="curiosity-game" hidden><p class="object-label">SPECIMEN DRAWER · NOTHING HERE HAS TO BE USEFUL</p><button class="wonder-button" id="curiosity-button" type="button">Open a specimen drawer</button><p class="fact" id="curiosity-fact">A question is a small door. You are allowed to open it just because it is there.</p><p class="tiny-note">Follow one thread. See what it teaches you to notice.</p></div>
+        <div class="panel-game post-game" id="post-game" hidden><p class="object-label">AIRMAIL FOR SOMEONE YOU KEEP IN YOUR HEART</p><button class="wonder-button" id="post-button" type="button">Stamp a tiny note</button><p class="fact" id="post-prompt">A real message can be very small: “This made me think of you.”</p><p class="tiny-note">Connection grows through returning, noticing, and letting people know they matter.</p></div>
+        <div class="panel-game courage-game" id="courage-game" hidden><p class="object-label">THE TELESCOPE IS POINTED AT YOUR NEXT BRAVE THING</p><button class="wonder-button" id="courage-button" type="button">Turn the telescope</button><p class="fact" id="courage-prompt">You do not need to feel ready in order to take one honest step.</p><p class="tiny-note">Courage is often just conviction with a wobbly voice.</p></div>
+        <div class="panel-game arcade-game" id="arcade-game" hidden><p class="object-label">TWO-PLAYER MODE · NO HIGH SCORES, ONLY CONNECTION</p><button class="wonder-button" id="arcade-button" type="button">Insert one friendship token</button><p class="fact" id="arcade-prompt">Invite someone into a small shared moment. That counts as play.</p><p class="tiny-note">The best games make more room for each other.</p></div>
+        <div class="panel-game drafts-game" id="drafts-game" hidden><p class="object-label">WELCOME. YOUR FIRST TRY MAY BE WONDERFULLY BAD.</p><button class="wonder-button" id="draft-button" type="button">Pull a brave little prompt</button><p class="fact" id="draft-prompt">Make something too small and silly to be impressive. Begin there.</p><p class="tiny-note">A first draft is proof that a blank page did not win.</p></div>
+        <div class="panel-game aquarium-game" id="aquarium-game" hidden><p class="object-label">THE QUESTIONS ARE SWIMMING PAST. CATCH ONE GENTLY.</p><button class="wonder-button" id="aquarium-button" type="button">Catch a wild question</button><p class="fact" id="aquarium-question">Can fish get thirsty?</p><p class="tiny-note">You do not have to answer every question. Some are good companions.</p></div>
+        <div class="panel-game visitor-game" id="visitor-game"><p class="object-label">A NOTE FROM SALENE · YOU MAY TAKE A MAP, OR IGNORE IT COMPLETELY</p><p class="visitor-note">Welcome to my world.</p><p class="visitor-note">I made this place because I believe curiosity deserves somewhere to play. I like strange questions, small acts of care, and beautiful ordinary things. I am trying to live softly and bravely: to love people deeply, trust what I care about, do things scared, and let life change me.</p><p class="visitor-note visitor-note-last">This is my world made from those attempts. There is no right route through it. Follow what catches your attention. Take what you need. Leave with a new question.</p></div>
       </section>
     </main>
 
-    <footer>
-      <p>Made with curiosity, conviction, and a little bit of fear.</p>
-      <p>There is room for you here. ♡<br /><a class="salene-home-link" href="https://saleney.github.io/">← Back to Salene’s Playground</a></p>
-    </footer>
-
+    <footer><p>Made with curiosity, conviction, and a little bit of fear.</p><p>There is room for you here. ♡<br /><a class="salene-home-link" href="https://saleney.github.io/">← Back to Salene’s Playground</a></p></footer>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
