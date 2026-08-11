@@ -1,93 +1,7 @@
 import * as THREE from 'three'
 import globeTextureUrl from './assets/salene-globe-surface.png'
+import { destinations, places } from './destinations.js'
 import './style.css'
-
-const places = {
-  heart: {
-    kicker: 'YOU FOUND A TINY WONDER',
-    title: 'The Body Cabinet',
-    copy: 'Your body is busy doing astonishing things, even while you are reading this sentence.',
-    game: 'heart-game',
-  },
-  questions: {
-    kicker: 'YOU HEARD A RUSTLE IN THE LEAVES',
-    title: 'The Question Forest',
-    copy: 'Questions do not need to be useful to be worth following. This forest has no exit signs on purpose.',
-    game: 'question-game',
-  },
-  language: {
-    kicker: 'A NEW WORD IS WAGGING ITS TAIL',
-    title: 'Word Woods',
-    copy: 'Words are little portals. Tap one to meet it, then grow another whenever you are curious.',
-    game: 'word-game',
-  },
-  ideas: {
-    kicker: 'THE AIR IS THINNER UP HERE',
-    title: 'Mount Maybe',
-    copy: 'Soon: a place for doing things scared, trusting your strange conviction, and letting an idea become bigger than you planned.',
-    comingSoon: 'The trail to Mount Maybe is currently being made by someone walking it.',
-  },
-  soup: {
-    kicker: 'A POT IS GENTLY BUBBLING',
-    title: 'The Warmth Workshop',
-    copy: 'A place for small acts of connection. Pick an ingredient and see what it might become.',
-    game: 'soup-game',
-  },
-  beauty: {
-    kicker: 'A SMALL LOVELY THING CAUGHT THE LIGHT',
-    title: 'The Beauty Exchange',
-    copy: 'Beauty is not extra. It is a way of staying awake to life—and a gift when we pass it along.',
-    game: 'beauty-game',
-  },
-  grief: {
-    kicker: 'THE GARDEN MAKES ROOM FOR EVERY SEASON',
-    title: 'The Grief Garden',
-    copy: 'A quiet place to remember that grief can deepen compassion without becoming the whole story.',
-    game: 'grief-game',
-  },
-  curiosity: {
-    kicker: 'THE GLASS IS FOGGING UP WITH QUESTIONS',
-    title: 'The Curiosity Conservatory',
-    copy: 'A greenhouse for following the little “wait, why?” moments that make a world larger.',
-    game: 'curiosity-game',
-  },
-  post: {
-    kicker: 'A LETTER JUST ARRIVED FOR SOMEONE YOU LOVE',
-    title: 'The Little Post Office',
-    copy: 'Connection does not always require a grand gesture. Sometimes it is one true sentence, sent gently.',
-    game: 'post-game',
-  },
-  courage: {
-    kicker: 'THE STARS ARE NOT PROMISING IT WILL BE EASY',
-    title: 'The Courage Observatory',
-    copy: 'A lookout for trusting your convictions, doing things scared, and taking the next small brave step.',
-    game: 'courage-game',
-  },
-  arcade: {
-    kicker: 'THE TWO-PLAYER MACHINE IS GLOWING',
-    title: 'The Friendship Arcade',
-    copy: 'A tiny arcade for practicing the kind of play that says: I want to be in this with you.',
-    game: 'arcade-game',
-  },
-  drafts: {
-    kicker: 'SOMETHING WONDERFULLY IMPERFECT IS HAPPENING',
-    title: 'The Hall of Bad First Drafts',
-    copy: 'A place to make the first try, write the clumsy line, and let a beginning be gloriously unfinished.',
-    game: 'drafts-game',
-  },
-  aquarium: {
-    kicker: 'A QUESTION JUST WIGGLED PAST YOUR ANKLE',
-    title: 'The Wild Question Aquarium',
-    copy: 'An aquarium for questions with no obvious practical purpose—and therefore plenty of room to surprise you.',
-    game: 'aquarium-game',
-  },
-  visitor: {
-    kicker: 'THE DOOR IS OPEN. THE LIGHT IS ON.',
-    title: 'The Visitor Center',
-    copy: 'A small note about the person who built this world, and the things she is trying to practice inside it.',
-    game: 'visitor-game',
-  },
-}
 
 const placeNames = Object.fromEntries(
   Object.entries(places).map(([id, place]) => [id, place.title]),
@@ -97,7 +11,6 @@ const heartButton = document.querySelector('#heart-button')
 const heartFact = document.querySelector('#heart-fact')
 const questionButton = document.querySelector('#question-button')
 const question = document.querySelector('#question')
-const mapButtons = document.querySelectorAll('.map-place.active')
 const panelKicker = document.querySelector('#panel-kicker')
 const panelTitle = document.querySelector('#panel-title')
 const panelCopy = document.querySelector('#panel-copy')
@@ -130,6 +43,23 @@ const aquariumButton = document.querySelector('#aquarium-button')
 const aquariumQuestion = document.querySelector('#aquarium-question')
 const globe = document.querySelector('#globe')
 const globeCanvas = document.querySelector('#globe-canvas')
+const mapPlaces = document.querySelector('#map-places')
+
+destinations.forEach((place, index) => {
+  const button = document.createElement('button')
+  button.className = 'map-place active'
+  button.type = 'button'
+  button.dataset.place = place.id
+  button.setAttribute('aria-pressed', String(index === 0))
+  button.innerHTML = `
+    <span class="place-art" aria-hidden="true"><img src="${place.art}" alt="" /></span>
+    <span class="place-name">${place.title}</span>
+    ${place.tag ? `<span class="place-tag">${place.tag}</span>` : ''}
+  `
+  mapPlaces.append(button)
+})
+
+const mapButtons = document.querySelectorAll('.map-place.active')
 
 const pocketKey = 'salene-world-wanderings'
 let wanderings = []
@@ -397,26 +327,6 @@ const atmosphere = new THREE.Mesh(
 atmosphere.scale.setScalar(1.025)
 scene.add(atmosphere)
 
-const globeLocations = {
-  // These are real map coordinates, not screen positions. Their longitudes are
-  // one seventh of a turn apart, so every spin brings a fresh part of Salene's
-  // world into view instead of keeping all the destinations on one face.
-  heart: { lat: 5, lon: -166 },
-  language: { lat: 28, lon: -138 },
-  arcade: { lat: -14, lon: -110 },
-  curiosity: { lat: 7, lon: -82 },
-  grief: { lat: -7, lon: -54 },
-  aquarium: { lat: -27, lon: -26 },
-  courage: { lat: 35, lon: 2 },
-  ideas: { lat: -5, lon: 30 },
-  drafts: { lat: -20, lon: 58 },
-  post: { lat: 8, lon: 86 },
-  beauty: { lat: -22, lon: 114 },
-  soup: { lat: -17, lon: 142 },
-  questions: { lat: -9, lon: 170 },
-  visitor: { lat: 43, lon: 120 },
-}
-
 function pointFromLatLon(lat, lon, radius = 1.61) {
   const phi = (90 - lat) * (Math.PI / 180)
   const theta = (lon + 180) * (Math.PI / 180)
@@ -428,7 +338,7 @@ function pointFromLatLon(lat, lon, radius = 1.61) {
 }
 
 const markerPoints = Object.fromEntries(
-  Object.entries(globeLocations).map(([place, location]) => [place, pointFromLatLon(location.lat, location.lon)]),
+  destinations.map((place) => [place.id, pointFromLatLon(place.lat, place.lon)]),
 )
 
 function updateMarkers() {
