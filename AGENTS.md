@@ -58,3 +58,14 @@ When adding or editing a destination, start in `src/destinations.js`. Do not har
 6. Check for regressions and console errors.
 7. Summarize what changed.
 8. Stop when the requested problem is solved.
+
+## Required session start
+
+Before modifying this project:
+
+1. Read this `AGENTS.md` file completely.
+2. Read the master creative constitution: https://github.com/saleney/saleney.github.io/blob/main/DESIGN.md
+3. Briefly confirm which instruction files you read.
+4. Inspect the existing implementation before proposing or making changes.
+
+Treat `AGENTS.md` as the operational instructions and the master `DESIGN.md` as the creative constitution. If either required file is unavailable, stop and tell Salene before modifying anything.
