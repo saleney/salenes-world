@@ -95,3 +95,27 @@ footer { display: flex; justify-content: space-between; gap: 20px; padding: 25px
   .world-map { min-height: calc(100vw - 56px); }
   .globe { top: 10px; }
 }
+
+/* Open folio: the invented world is the plate, its frame stays quiet. */
+:root{color:#252622;background:#f0efeb}
+body{background:#f0efeb}
+.top-bar{background:transparent;border-bottom:1px solid #c4bdb1;justify-content:flex-end}
+.backpack,.backpack-message{background:#e8e1d6;border:1px solid #8d8174;box-shadow:none;color:#252622}
+.backpack{min-height:44px}
+main{padding-top:70px}
+.world-intro{text-align:left;max-width:none;margin-bottom:64px}
+.world-intro::before{content:"AN OPEN FOLIO / PERSONAL INDEX";font-size:10px;letter-spacing:.14em;color:#98553d}
+h1,h2{font-weight:400;letter-spacing:-.05em}
+h1{max-width:900px;font-size:clamp(3.5rem,8vw,7rem);line-height:1.03}
+.world-intro>p:last-child{margin:24px 0 0;max-width:460px;color:#655e54}
+.map-shell{padding:22px 0 0;border:0;border-top:1px solid #a79c8e;background:transparent;box-shadow:none}
+.map-title-row{padding:0 0 24px}.map-title-row h2{font-size:clamp(1.5rem,3vw,2.3rem)}
+.world-map{border:1px solid #b7ad9e;background:#e9e5da}
+.place-name{background:#f0efeb;border-width:1px;box-shadow:none;color:#252622}
+.adventure-panel{background:transparent;border-width:1px;box-shadow:none}
+.panel-game{border-width:1px;box-shadow:none}
+.object-label,.eyebrow{color:#98553d}
+.salene-home-link{display:inline-flex;align-items:center;min-height:44px;border:0;border-bottom:1px solid #98553d;border-radius:0;background:transparent;box-shadow:none;color:#f0efeb;padding:8px 0}
+.salene-home-link:hover,.salene-home-link:focus-visible{background:transparent;color:#e6b398;outline-color:#e6b398}
+footer{background:#252622}
+@media(max-width:700px){main{padding-top:42px}.world-intro{margin-bottom:38px}.world-intro h1{font-size:clamp(2.7rem,10vw,4rem)}.map-title-row{gap:12px}.world-intro::before{font-size:9px}.top-bar{min-height:62px}}
