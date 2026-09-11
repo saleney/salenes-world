@@ -11,11 +11,7 @@ const heartButton = document.querySelector('#heart-button')
 const heartFact = document.querySelector('#heart-fact')
 const questionButton = document.querySelector('#question-button')
 const question = document.querySelector('#question')
-const panelKicker = document.querySelector('#panel-kicker')
 const panelTitle = document.querySelector('#panel-title')
-const panelCopy = document.querySelector('#panel-copy')
-const backpackButton = document.querySelector('#backpack-button')
-const backpackMessage = document.querySelector('#backpack-message')
 const wordCard = document.querySelector('#word-card')
 const wordHanzi = document.querySelector('#word-hanzi')
 const wordPinyin = document.querySelector('#word-pinyin')
@@ -70,21 +66,13 @@ try {
   wanderings = []
 }
 
-function updatePockets() {
-  const recentPlaces = wanderings.slice(-3).map((place) => placeNames[place]).filter(Boolean)
-  const recentLine = recentPlaces.length
-    ? `Recently wandered: ${recentPlaces.join(' · ')}.`
-    : 'No route is required. The world will remember what catches your eye.'
-  backpackMessage.innerHTML = `Currently carrying: an open mind, a snack, and one excellent question.<br /><br />${recentLine}`
-}
 
 function rememberPlace(place) {
   wanderings = [...wanderings.filter((visited) => visited !== place), place].slice(-8)
   window.localStorage.setItem(pocketKey, JSON.stringify(wanderings))
-  updatePockets()
+
 }
 
-updatePockets()
 
 const questions = [
   'What do you know so well that you have stopped seeing it?',
@@ -419,21 +407,13 @@ mapButtons.forEach((button) => {
     rememberPlace(button.dataset.place)
     mapButtons.forEach((mapButton) => mapButton.setAttribute('aria-pressed', 'false'))
     button.setAttribute('aria-pressed', 'true')
-    panelKicker.textContent = place.kicker
     panelTitle.textContent = place.title
-    panelCopy.textContent = place.copy
 
     document.querySelectorAll('.panel-game').forEach((game) => { game.hidden = true })
     const activeGame = place.game ? document.querySelector(`#${place.game}`) : document.querySelector('#coming-soon')
-    activeGame.hidden = false
+    if (activeGame) activeGame.hidden = false
 
     if (place.comingSoon) document.querySelector('#coming-soon-text').textContent = place.comingSoon
     document.querySelector('#first-room').scrollIntoView({ behavior: 'smooth', block: 'start' })
   })
-})
-
-backpackButton.addEventListener('click', () => {
-  const isOpen = backpackButton.getAttribute('aria-expanded') === 'true'
-  backpackButton.setAttribute('aria-expanded', String(!isOpen))
-  backpackMessage.hidden = isOpen
 })
