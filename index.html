@@ -19,11 +19,12 @@
 
       <section class="map-shell" id="world-map" aria-labelledby="map-title">
         <div class="map-title-row"><h2 id="map-title">Where would you like to wander?</h2><p class="map-key">↔ &nbsp;↕ &nbsp; drag the world in every direction</p></div>
+        <label class="place-picker-label" for="place-picker">Choose a place</label><select id="place-picker"></select>
         <div class="world-map" aria-label="Map of Salene's Internet Playground"><div class="globe" id="globe" aria-label="Interactive globe. Drag the water to turn it."><div class="globe-canvas" id="globe-canvas" aria-hidden="true"></div><div id="map-places"></div></div></div>
       </section>
 
       <section class="adventure-panel" id="first-room" aria-live="polite">
-        <h2 id="panel-title">The Visitor Center</h2>
+        <h2 id="panel-title" tabindex="-1">The Visitor Center</h2>
 
         <div class="panel-game" id="heart-game" hidden><button class="heart-button" id="heart-button" type="button" aria-describedby="heart-fact"><span class="heart" aria-hidden="true">♥</span><span>Press for a pulse</span></button><p class="fact" id="heart-fact">Your heart beats roughly 100,000 times a day, without you having to remember.</p></div>
         <div class="panel-game" id="question-game" hidden><button class="question-button" id="question-button" type="button">Turn over a leaf</button><p class="question" id="question">What would you like to notice more carefully today?</p></div>
@@ -40,6 +41,7 @@
         <div class="panel-game aquarium-game" id="aquarium-game" hidden><button class="wonder-button" id="aquarium-button" type="button">Catch a wild question</button><p class="fact" id="aquarium-question">Can fish get thirsty?</p></div>
 
         <div class="panel-game visitor-game" id="visitor-game"><p class="object-label">A NOTE FROM SALENE · YOU MAY TAKE A MAP, OR IGNORE IT COMPLETELY</p><p class="visitor-note">Welcome to my world.</p><p class="visitor-note">I made this place because I believe curiosity deserves somewhere to play. I like strange questions, small acts of care, and beautiful ordinary things. I am trying to live softly and bravely: to love people deeply, trust what I care about, do things scared, and let life change me.</p><p class="visitor-note visitor-note-last">This is my world made from those attempts. There is no right route through it. Follow what catches your attention. Take what you need. Leave with a new question.</p></div>
+        <a class="return-map" href="#world-map">Back to the globe</a>
       </section>
     </main>
 

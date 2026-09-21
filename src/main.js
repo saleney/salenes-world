@@ -40,19 +40,23 @@ const aquariumQuestion = document.querySelector('#aquarium-question')
 const globe = document.querySelector('#globe')
 const globeCanvas = document.querySelector('#globe-canvas')
 const mapPlaces = document.querySelector('#map-places')
+const placePicker = document.querySelector('#place-picker')
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
 
 destinations.forEach((place, index) => {
   const button = document.createElement('button')
   button.className = 'map-place active'
   button.type = 'button'
   button.dataset.place = place.id
-  button.setAttribute('aria-pressed', String(index === 0))
+  button.setAttribute('aria-pressed', String(place.id === 'visitor'))
   button.innerHTML = `
     <span class="place-art" aria-hidden="true"><img src="${place.art}" alt="" /></span>
     <span class="place-name">${place.title}</span>
     ${place.tag ? `<span class="place-tag">${place.tag}</span>` : ''}
   `
   mapPlaces.append(button)
+  const option = new Option(place.title, place.id, false, place.id === 'visitor')
+  placePicker.add(option)
 })
 
 const mapButtons = document.querySelectorAll('.map-place.active')
@@ -69,7 +73,7 @@ try {
 
 function rememberPlace(place) {
   wanderings = [...wanderings.filter((visited) => visited !== place), place].slice(-8)
-  window.localStorage.setItem(pocketKey, JSON.stringify(wanderings))
+  try { window.localStorage.setItem(pocketKey, JSON.stringify(wanderings)) } catch { /* Navigation still works when storage is unavailable. */ }
 
 }
 
@@ -87,7 +91,7 @@ let nextWord = 0
 let nextBeautyPrompt = 0
 let nextCuriosity = 0
 let nextPostPrompt = 0
-let nextCouragePrompt = 0
+let nextCouragePrompt = 1
 let nextArcadePrompt = 0
 let nextDraftPrompt = 0
 let nextAquariumQuestion = 0
@@ -193,6 +197,7 @@ nextWordButton.addEventListener('click', () => {
   wordMeaning.hidden = true
   wordHint.hidden = false
   nextWordButton.hidden = true
+  wordCard.focus()
 })
 
 ingredientButtons.forEach((button) => {
@@ -372,6 +377,7 @@ renderer.domElement.addEventListener('pointermove', (event) => {
 
 function stopTurning(event) {
   isTurning = false
+  if (reducedMotion.matches) spinVelocityX = spinVelocityY = 0
   if (renderer.domElement.hasPointerCapture(event.pointerId)) renderer.domElement.releasePointerCapture(event.pointerId)
   globeCanvas.classList.remove('is-turning')
 }
@@ -389,7 +395,7 @@ new ResizeObserver(([entry]) => {
 
 function animate() {
   requestAnimationFrame(animate)
-  if (!isTurning && (Math.abs(spinVelocityX) > 0.0001 || Math.abs(spinVelocityY) > 0.0001)) {
+  if (!reducedMotion.matches && !isTurning && (Math.abs(spinVelocityX) > 0.0001 || Math.abs(spinVelocityY) > 0.0001)) {
     sphere.rotation.y += spinVelocityY
     sphere.rotation.x = Math.max(-0.58, Math.min(0.58, sphere.rotation.x + spinVelocityX))
     spinVelocityX *= 0.94
@@ -401,19 +407,27 @@ function animate() {
 
 animate()
 
-mapButtons.forEach((button) => {
-  button.addEventListener('click', () => {
-    const place = places[button.dataset.place]
-    rememberPlace(button.dataset.place)
-    mapButtons.forEach((mapButton) => mapButton.setAttribute('aria-pressed', 'false'))
-    button.setAttribute('aria-pressed', 'true')
-    panelTitle.textContent = place.title
-
-    document.querySelectorAll('.panel-game').forEach((game) => { game.hidden = true })
-    const activeGame = place.game ? document.querySelector(`#${place.game}`) : document.querySelector('#coming-soon')
-    if (activeGame) activeGame.hidden = false
-
-    if (place.comingSoon) document.querySelector('#coming-soon-text').textContent = place.comingSoon
-    document.querySelector('#first-room').scrollIntoView({ behavior: 'smooth', block: 'start' })
-  })
+function openPlace(id) {
+  const place = places[id]
+  if (!place) return
+  rememberPlace(id)
+  mapButtons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.place === id)))
+  placePicker.value = id
+  panelTitle.textContent = place.title
+  document.querySelectorAll('.panel-game').forEach((game) => { game.hidden = true })
+  const activeGame = document.getElementById(place.game || 'coming-soon')
+  if (activeGame) activeGame.hidden = false
+  if (place.comingSoon) document.querySelector('#coming-soon-text').textContent = place.comingSoon
+  panelTitle.focus({ preventScroll: true })
+  document.querySelector('#first-room').scrollIntoView({ behavior: reducedMotion.matches ? 'instant' : 'smooth', block: 'start' })
+}
+mapButtons.forEach((button) => button.addEventListener('click', () => openPlace(button.dataset.place)))
+placePicker.addEventListener('change', () => openPlace(placePicker.value))
+document.querySelector('.return-map').addEventListener('click', (event) => {
+  event.preventDefault()
+  placePicker.focus({ preventScroll: true })
+  document.querySelector('#world-map').scrollIntoView({ behavior: reducedMotion.matches ? 'instant' : 'smooth', block: 'start' })
+})
+reducedMotion.addEventListener('change', () => {
+  if (reducedMotion.matches) spinVelocityX = spinVelocityY = 0
 })
