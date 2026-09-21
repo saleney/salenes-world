@@ -249,9 +249,12 @@ arcadeButton.addEventListener('click', () => {
 })
 
 draftButton.addEventListener('click', () => {
+  saveDraft()
   draftPrompt.textContent = draftPrompts[nextDraftPrompt]
   draftButton.textContent = 'Pull another prompt ↗'
   nextDraftPrompt = (nextDraftPrompt + 1) % draftPrompts.length
+  restoreDraft()
+  draftInput.focus({ preventScroll: true })
 })
 
 aquariumButton.addEventListener('click', () => {
@@ -259,6 +262,40 @@ aquariumButton.addEventListener('click', () => {
   aquariumQuestion.textContent = aquariumQuestions[nextAquariumQuestion]
   aquariumButton.textContent = 'Catch another question ↗'
 })
+
+// Each prompt keeps its own writing; changing rooms or prompts never clears it.
+const draftInput = document.querySelector('#first-draft')
+const draftStatus = document.querySelector('#draft-save-status')
+const draftsKey = 'salene-world-first-drafts-v1'
+let savedDrafts = {}
+let saveTimer
+try {
+  const stored = JSON.parse(localStorage.getItem(draftsKey) || '{}')
+  if (stored && typeof stored === 'object' && !Array.isArray(stored)) {
+    savedDrafts = Object.fromEntries(Object.entries(stored).filter(([, value]) => typeof value === 'string'))
+  }
+} catch { /* An unreadable saved note must not prevent opening the world. */ }
+function saveDraft() {
+  clearTimeout(saveTimer)
+  savedDrafts[draftPrompt.textContent] = draftInput.value
+  try {
+    localStorage.setItem(draftsKey, JSON.stringify(savedDrafts))
+    draftStatus.textContent = 'Kept in this browser.'
+  } catch {
+    draftStatus.textContent = 'Browser storage unavailable. Copy your draft before leaving.'
+  }
+}
+function restoreDraft() {
+  draftInput.value = savedDrafts[draftPrompt.textContent] || ''
+}
+restoreDraft()
+draftInput.addEventListener('input', () => {
+  draftStatus.textContent = 'Saving…'
+  clearTimeout(saveTimer)
+  saveTimer = setTimeout(saveDraft, 500)
+})
+draftInput.addEventListener('blur', saveDraft)
+window.addEventListener('pagehide', saveDraft)
 
 // A real 3D globe: Three.js draws the sphere, while ordinary HTML buttons are
 // projected onto its surface. This keeps the playful labels accessible and lets
