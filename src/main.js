@@ -2,6 +2,7 @@ import * as THREE from 'three'
 import globeTextureUrl from './assets/salene-globe-surface.png'
 import { destinations, places } from './destinations.js'
 import './style.css'
+import { createJournal } from './journal.js'
 
 const placeNames = Object.fromEntries(
   Object.entries(places).map(([id, place]) => [id, place.title]),
@@ -97,11 +98,11 @@ let nextDraftPrompt = 0
 let nextAquariumQuestion = 0
 
 const words = [
-  { hanzi: '朋友', pinyin: 'péngyou', meaning: 'friend' },
-  { hanzi: '好奇', pinyin: 'hàoqí', meaning: 'curious' },
-  { hanzi: '星星', pinyin: 'xīngxing', meaning: 'star' },
-  { hanzi: '谢谢', pinyin: 'xièxie', meaning: 'thank you' },
-  { hanzi: '一起', pinyin: 'yìqǐ', meaning: 'together' },
+  { hanzi: '朋友', pinyin: 'péngyou', meaning: 'friend', scene: 'You save the seat beside you. A friend arrives with two warm buns.' },
+  { hanzi: '好奇', pinyin: 'hàoqí', meaning: 'curious', scene: 'A tiny door appears in a tree. You lean closer: what could be inside?'  },
+  { hanzi: '星星', pinyin: 'xīngxing', meaning: 'star', scene: 'The lights go out. Above the roof, the first star becomes visible.' },
+  { hanzi: '谢谢', pinyin: 'xièxie', meaning: 'thank you', scene: 'Someone holds an umbrella over both of you. You turn toward them: 谢谢.' },
+  { hanzi: '一起', pinyin: 'yìqǐ', meaning: 'together', scene: 'There is room on the path for two. You set off together.' },
 ]
 
 const soupRecipes = {
@@ -190,6 +191,8 @@ wordCard.addEventListener('click', () => {
 nextWordButton.addEventListener('click', () => {
   nextWord = (nextWord + 1) % words.length
   const word = words[nextWord]
+  document.querySelector('#word-scene').textContent = word.scene
+  document.querySelector('#word-keep-status').textContent = ''
   wordHanzi.textContent = word.hanzi
   wordPinyin.textContent = word.pinyin
   wordMeaning.textContent = word.meaning
@@ -468,3 +471,56 @@ document.querySelector('.return-map').addEventListener('click', (event) => {
 reducedMotion.addEventListener('change', () => {
   if (reducedMotion.matches) spinVelocityX = spinVelocityY = 0
 })
+
+const journal = createJournal({ openWord(index) {
+  nextWord = index
+  const word = words[index]
+  wordHanzi.textContent = word.hanzi
+  wordPinyin.textContent = word.pinyin
+  wordMeaning.textContent = word.meaning
+  document.querySelector('#word-scene').textContent = word.scene
+  wordCard.setAttribute('aria-expanded', 'true')
+  wordMeaning.hidden = false
+  wordHint.hidden = true
+  nextWordButton.hidden = false
+  openPlace('language')
+}, openDraft(prompt) {
+  saveDraft()
+  draftPrompt.textContent = prompt
+  restoreDraft()
+  openPlace('drafts')
+  draftInput.focus({ preventScroll: true })
+}})
+document.querySelector('#word-scene').textContent = words[0].scene
+document.querySelector('#keep-word').addEventListener('click', () => {
+  const word = words[nextWord]
+  const kept = journal.keep({ id: 'word-' + nextWord, type: 'word', index: nextWord, title: word.hanzi + ' · ' + word.pinyin, text: word.meaning + '. ' + word.scene })
+  document.querySelector('#word-keep-status').textContent = kept ? 'Kept in your travel journal.' : 'Kept for this visit. Browser storage is unavailable.'
+})
+const audioStatus = document.querySelector('#word-audio-status')
+const hearWord = document.querySelector('#hear-word')
+function mandarinVoice() {
+  return window.speechSynthesis?.getVoices().find(voice => /^zh[-_](CN|SG|Hans)/i.test(voice.lang))
+}
+function updateVoiceAvailability() {
+  hearWord.disabled = !mandarinVoice()
+  audioStatus.textContent = hearWord.disabled ? 'Mandarin audio is unavailable in this browser; pinyin is shown above.' : ''
+}
+updateVoiceAvailability()
+window.speechSynthesis?.addEventListener('voiceschanged', updateVoiceAvailability)
+hearWord.addEventListener('click', () => {
+  const voice = mandarinVoice()
+  if (!voice) { updateVoiceAvailability(); return }
+  window.speechSynthesis.cancel()
+  const utterance = new SpeechSynthesisUtterance(words[nextWord].hanzi)
+  utterance.voice = voice
+  utterance.lang = voice.lang
+  utterance.rate = 0.8
+  utterance.onerror = () => { audioStatus.textContent = 'Audio could not play. Pinyin is shown above.' }
+  window.speechSynthesis.speak(utterance)
+})
+// Existing drafts remain in their original store; the journal is an index into them.
+function syncJournalDrafts() { journal.drafts(savedDrafts) }
+draftInput.addEventListener('blur', syncJournalDrafts)
+draftButton.addEventListener('click', syncJournalDrafts)
+syncJournalDrafts()

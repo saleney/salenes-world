@@ -143,3 +143,18 @@ footer{background:#252622}
 .drafts-game .wonder-button { margin: 4px 0 0; border: 0; border-bottom: 1px solid #98553d; border-radius: 0; padding: 10px 0; min-height: 44px; background: transparent; box-shadow: none; }
 .drafts-game .wonder-button:hover { transform: none; box-shadow: none; }
 @media (max-width: 700px) { .place-name { font-size: .65rem; max-width: 100px; line-height: 1.15; } }
+
+.word-scene { max-width: 430px; margin: 20px auto; font: 1.1rem/1.5 Fraunces, Georgia, serif; }
+.word-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px 20px; }
+.word-actions button, .travel-journal button { min-height: 44px; padding: 8px 0; border: 0; border-bottom: 1px solid #98553d; border-radius: 0; background: transparent; color: inherit; font: .75rem 'DM Mono', monospace; cursor: pointer; }
+.word-actions button:disabled { opacity: .6; cursor: default; }
+.word-actions button:focus-visible, .travel-journal button:focus-visible, .travel-journal summary:focus-visible { outline: 2px solid #98553d; outline-offset: 4px; }
+#word-audio-status, #word-keep-status { font-size: .65rem; line-height: 1.5; }
+.travel-journal { max-width: 800px; margin: 48px auto 0; border-top: 1px solid #a79c8e; padding-top: 20px; }
+.travel-journal summary { padding: 12px 0; cursor: pointer; font: 1.5rem Fraunces, Georgia, serif; }
+.journal-note, #journal-status { font-size: .7rem; line-height: 1.5; }
+#journal-entries { list-style: none; margin: 24px 0 0; padding: 0; }
+#journal-entries li { padding: 20px 0; border-top: 1px solid #c4bdb1; overflow-wrap: anywhere; }
+#journal-entries h3 { margin: 0 0 8px; font: 1.3rem Fraunces, Georgia, serif; }
+#journal-entries p { white-space: pre-wrap; font: 1rem/1.5 Fraunces, Georgia, serif; }
+#journal-entries button + button { margin-left: 24px; }
