@@ -120,7 +120,7 @@ h1{max-width:900px;font-size:clamp(3.5rem,8vw,7rem);line-height:1.03}
 footer{background:#252622}
 @media(max-width:700px){main{padding-top:42px}.world-intro{margin-bottom:38px}.world-intro h1{font-size:clamp(2.7rem,10vw,4rem)}.map-title-row{gap:12px}.world-intro::before{font-size:9px}.top-bar{min-height:62px}}
 
-.world-home{position:absolute;right:5vw;top:0;display:flex;align-items:center;min-height:44px;color:inherit;font-size:.7rem;text-decoration:none}.world-home:focus-visible{outline:2px solid #98553d;outline-offset:3px}
+.world-home{display:flex;align-items:center;justify-content:flex-end;min-height:44px;margin-left:auto;color:inherit;font-size:.7rem;text-decoration:none}.world-home:focus-visible{outline:2px solid #e6b398;outline-offset:3px}
 
 /* Every room remains reachable without dragging the globe. */
 .map-place[hidden] { display: none; }
