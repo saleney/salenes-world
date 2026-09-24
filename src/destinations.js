@@ -19,7 +19,7 @@ import arcadeArt from './assets/landmarks/friendship-arcade.png'
 // `game` values match the ids of the activity panels in index.html.
 export const destinations = [
   { id: 'heart', kicker: 'YOU FOUND A TINY WONDER', title: 'The Body Cabinet', copy: 'Your body is busy doing astonishing things, even while you are reading this sentence.', game: 'heart-game', lat: 5, lon: -166, art: bodyArt, tag: 'tiny wonders' },
-  { id: 'language', kicker: 'A NEW WORD IS WAGGING ITS TAIL', title: 'Word Woods', copy: 'Words are little portals. Tap one to meet it, then grow another whenever you are curious.', game: 'word-game', lat: 28, lon: -138, art: languageArt, tag: 'language games' },
+  { id: 'language', kicker: 'A NEW WORD IS WAGGING ITS TAIL', title: 'Word Woods', copy: 'Place a word in the clearing and see what happens.', game: 'word-game', lat: 28, lon: -138, art: languageArt, tag: 'language games' },
   { id: 'arcade', kicker: 'THE TWO-PLAYER MACHINE IS GLOWING', title: 'The Friendship Arcade', copy: 'A tiny arcade for practicing the kind of play that says: I want to be in this with you.', game: 'arcade-game', lat: -14, lon: -110, art: arcadeArt },
   { id: 'curiosity', kicker: 'THE GLASS IS FOGGING UP WITH QUESTIONS', title: 'The Curiosity Conservatory', copy: 'A greenhouse for following the little “wait, why?” moments that make a world larger.', game: 'curiosity-game', lat: 7, lon: -82, art: curiosityArt },
   { id: 'grief', kicker: 'THE GARDEN MAKES ROOM FOR EVERY SEASON', title: 'The Grief Garden', copy: 'A quiet place to remember that grief can deepen compassion without becoming the whole story.', game: 'grief-game', lat: -7, lon: -54, art: griefArt, tag: 'sit for a while' },

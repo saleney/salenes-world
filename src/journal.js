@@ -7,7 +7,7 @@ export function createJournal({ openWord, openDraft }) {
   let drafts = {}
   try {
     const stored = JSON.parse(localStorage.getItem(key) || '[]')
-    if (Array.isArray(stored)) entries = stored.filter(item => item && item.type === 'word' && Number.isInteger(item.index) && item.index >= 0 && item.index < 5 && typeof item.title === 'string' && typeof item.text === 'string').slice(0, 5)
+    if (Array.isArray(stored)) entries = stored.filter(item => item && item.type === 'word' && Number.isInteger(item.index) && item.index >= 0 && item.index < 8 && typeof item.title === 'string' && typeof item.text === 'string').slice(0, 8)
   } catch { status.textContent = 'Previous journal entries could not be read in this browser.' }
   function persist() {
     try { localStorage.setItem(key, JSON.stringify(entries)); return true }

@@ -3,6 +3,8 @@ import globeTextureUrl from './assets/salene-globe-surface.png'
 import { destinations, places } from './destinations.js'
 import './style.css'
 import { createJournal } from './journal.js'
+import { createWordWoods } from './word-woods.js'
+import './word-woods.css'
 
 const placeNames = Object.fromEntries(
   Object.entries(places).map(([id, place]) => [id, place.title]),
@@ -473,6 +475,8 @@ reducedMotion.addEventListener('change', () => {
 })
 
 const journal = createJournal({ openWord(index) {
+  if (index >= 5) { openPlace('language'); woods.place(index - 5); return }
+  document.querySelector('#legacy-words').open = true
   nextWord = index
   const word = words[index]
   wordHanzi.textContent = word.hanzi
@@ -524,3 +528,5 @@ function syncJournalDrafts() { journal.drafts(savedDrafts) }
 draftInput.addEventListener('blur', syncJournalDrafts)
 draftButton.addEventListener('click', syncJournalDrafts)
 syncJournalDrafts()
+
+const woods = createWordWoods(document.querySelector('#woods-toy'), entry => journal.keep(entry))

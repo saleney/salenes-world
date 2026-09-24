@@ -48,3 +48,14 @@ unfinished idea from breaking the map.
 `lon` moves it around the globe: values from `-180` to `180` are easiest to
 work with. Spread new locations around different longitudes so each spin has
 something to discover.
+
+## Word Woods tile preview · 2026-09-24
+
+Preview branch: `preview/word-woods-tiles`. Not deployed; live remains `a051069`.
+`src/word-woods.js` and `.css` add a clearing/table with 雨 yǔ (rain), 鸟 niǎo (bird), 风 fēng (wind). Meanings and readings checked against MDBG dictionary. Native SVG/CSS and Web Audio; no dependencies or other destination changes.
+
+Desktop checked: drag placement, Enter/Space placement, three distinct effects, replay, return/focus, single-effect state, flip/pinyin, sound toggle, pronunciation invocation, journal persistence/revisit and legacy saved-word reopening. Browser widths 320/390/430 have no horizontal overflow; controls retain 44px targets; Back to globe restores the destination picker. Build and diff checks passed; no browser console errors. Existing large-bundle warning remains.
+
+Old journal indices 0–4 remain intact; new tiles use 5–7. Original words remain under Earlier words. No storage migration or clearing. Audio begins off. Mandarin uses an available system voice with readable fallback; actual audible quality and absent-voice runtime need physical-device checking. Reduced-motion CSS removes effect animation while retaining visible effect states; preference not emulated in QA. Mobile pointer dragging needs physical-device confirmation; tap is supported and checked at phone widths. Preview screenshots can be distorted by the browser viewport tool; desktop visual inspection passed.
+
+NEXT: Salene reviews the working preview at http://127.0.0.1:4193/salenes-world/?preview=woods01 (choose Word Woods). Do not publish until approved. No further room expansion in this pass.
