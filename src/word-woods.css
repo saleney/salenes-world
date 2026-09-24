@@ -34,3 +34,13 @@
 @keyframes woods-water{50%{opacity:.65}}
 @keyframes woods-flicker{to{transform:scale(.92,1.08) rotate(3deg)}}
 @media(max-width:600px){.woods-rack{grid-template-columns:repeat(5,minmax(44px,54px));gap:13px 3px}#woods-toy .woods-tile{width:44px;height:64px;font-size:30px;justify-self:center;border-bottom-width:7px}.woods-tools{column-gap:12px}}
+
+/* The placed object owns its actions; the row is its return destination. */
+.placed-object{position:absolute;left:36%;top:57%;width:18%;min-width:76px;text-align:center}
+.placed-object[hidden],.woods-keep[hidden]{display:none}
+#woods-toy .placed-tile{position:relative;left:auto;top:auto;width:100%;min-width:0;aspect-ratio:.8;cursor:pointer;padding:6px;min-height:90px}
+#woods-toy .woods-keep{display:block;margin:8px auto 0;padding:4px 6px;background:#f5efdc;border:0;border-bottom:1px solid #66705b;font-size:11px;min-height:44px}
+#woods-toy .woods-keep[hidden]{display:none}
+.woods-clearing{overflow:visible}.woods-art{border-radius:inherit}
+@media(max-width:600px){.placed-object{left:34%;top:48%;width:25%}#woods-toy .placed-tile{min-height:76px}.placed-tile span{font-size:28px}.placed-tile small{font-size:11px}}
+#woods-toy .woods-keep{position:absolute;left:calc(100% + 8px);top:35%;width:64px;margin:0;font-size:10px;background:#f5efdc}

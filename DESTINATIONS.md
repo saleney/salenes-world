@@ -62,3 +62,6 @@ NEXT: Salene reviews the working preview at http://127.0.0.1:4193/salenes-world/
 
 ## Ten-tile preview
 Expanded the clearing with 日 rì (sun), 月 yuè (moon), 云 yún (cloud), 花 huā (flower), 树 shù (tree), 水 shuǐ (water), 火 huǒ (fire). Two rows of five keep choices visible, one shared contextual toolbar avoids repeated controls, and only one scene effect appears at a time. Prior journal indices stay unchanged; capacity now includes all fifteen old/new words. Build passed; all ten keyboard placements checked, 320px tile bounds fit, and the new fire word survived reload alongside earlier saved words. Preview only; live still has three tiles. Physical-device audio/motion checks remain outstanding from prior QA.
+
+## Direct tile controls preview
+Removed the toolbar. Tap/drag a row tile to place; tap the placed tile to flip and pronounce if sound is enabled; tap its selected row tile to return; place again to replay. Keep word is available only on the back, as a separate accessible button. Keyboard placement/flip/return and 320px action bounds checked; build passed. Preview only.

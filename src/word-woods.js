@@ -34,10 +34,10 @@ export function createWordWoods(root, keep) {
     <g class="clearing-bird" fill="#5b6755" stroke="#394838" stroke-width="2"><path d="M384 279Q357 257 370 246Q383 235 398 250L416 235L410 262Q403 281 384 279L369 288Z"/><path fill="#c3ac83" d="M374 251Q394 247 401 266Q381 276 374 251"/><path d="M397 278L400 291M390 279L389 291"/><circle cx="403" cy="245" r="2" fill="#222"/><path d="M415 241L424 245L413 248"/></g>
     <g class="clearing-rain" stroke="#637d86" stroke-width="2">${Array.from({length:24},(_,i)=>`<path d="M${145+(i*47)%440} ${35+(i*31)%210}l-8 24"/>`).join('')}</g>
     <g class="wind-lines" fill="none" stroke="#65735a" stroke-width="2"><path d="M172 166Q243 145 287 169T375 165M221 190Q318 170 391 191M442 215Q499 202 538 217"/></g>
-  </svg><div class="placed-tile" hidden><span lang="zh-Hans"></span><small></small></div></div>
+  </svg><div class="placed-object" hidden><button type="button" class="placed-tile" aria-label="Turn placed tile over" aria-pressed="false"><span lang="zh-Hans"></span><small></small></button><button type="button" class="woods-keep" hidden>Keep word</button></div></div>
   <div class="woods-rack" role="group" aria-label="Word tiles">${woodlandWords.map((w,i)=>`<button type="button" class="woods-tile" data-word="${i}" aria-label="Place ${w.hanzi}" aria-pressed="false"><span lang="zh-Hans">${w.hanzi}</span></button>`).join('')}</div>
-  <div class="woods-tools" hidden><button type="button" data-action="flip" aria-pressed="false">Turn over</button><button type="button" data-action="hear">Hear Mandarin</button><button type="button" data-action="again">Try again</button><button type="button" data-action="return">Return tile</button><button type="button" data-action="keep">Keep word</button></div><p class="woods-status" role="status"></p><p class="woods-audio" role="status"></p>`
-  const scene = root.querySelector('.woods-clearing'), placed = root.querySelector('.placed-tile'), status = root.querySelector('.woods-status'), audioStatus = root.querySelector('.woods-audio'), controls = root.querySelector('.woods-tools'), sound = root.querySelector('#woods-sound')
+  <p class="woods-status" role="status"></p><p class="woods-audio" role="status"></p>`
+  const scene = root.querySelector('.woods-clearing'), placed = root.querySelector('.placed-tile'), status = root.querySelector('.woods-status'), audioStatus = root.querySelector('.woods-audio'), controls = root.querySelector('.placed-object'), sound = root.querySelector('#woods-sound')
   const tiles = [...root.querySelectorAll('.woods-tile')]
   let selected = null, timer, flipped = false, soundOn = false, context, drag = null, suppressClick = false
   function clack() {
@@ -51,13 +51,15 @@ export function createWordWoods(root, keep) {
       oscillator.connect(gain);gain.connect(context.destination);oscillator.start();oscillator.stop(context.currentTime+.07)
     } catch { audioStatus.textContent='Tile sound is unavailable.' }
   }
+  const keepButton = root.querySelector('.woods-keep')
   function face() {
     const word=woodlandWords[selected]
     placed.querySelector('span').textContent=word.hanzi
     placed.querySelector('small').textContent=flipped ? `${word.pinyin} · ${word.meaning}` : ''
     placed.classList.toggle('is-back',flipped)
-    root.querySelector('[data-action="flip"]').setAttribute('aria-pressed',String(flipped))
-    root.querySelector('[data-action="flip"]').textContent=flipped?'Character side':'Turn over'
+    placed.setAttribute('aria-pressed',String(flipped))
+    placed.setAttribute('aria-label', `${word.hanzi}: ${flipped ? word.pinyin + ', ' + word.meaning + '. Show character side' : 'Turn over for meaning and pronunciation'}`)
+    keepButton.hidden=!flipped
   }
   function play() {
     clearTimeout(timer); const word=woodlandWords[selected]
@@ -68,35 +70,41 @@ export function createWordWoods(root, keep) {
   function place(index) {
     window.speechSynthesis?.cancel()
     selected=index;flipped=false;placed.hidden=false;controls.hidden=false;audioStatus.textContent=''
-    tiles.forEach((tile,i)=>tile.setAttribute('aria-pressed',String(i===index)))
+    tiles.forEach((tile,i)=>{tile.setAttribute('aria-pressed',String(i===index));tile.setAttribute('aria-label',`${i===index?'Return':'Place'} ${woodlandWords[i].hanzi}`)})
     face();play()
   }
   function reset() {
     clearTimeout(timer);scene.dataset.effect='';placed.hidden=true;controls.hidden=true;window.speechSynthesis?.cancel()
-    const previous=selected;selected=null;tiles.forEach(t=>t.setAttribute('aria-pressed','false'));status.textContent='Tile returned.';audioStatus.textContent='';if(previous!==null)tiles[previous].focus()
+    const previous=selected;selected=null;tiles.forEach((t,i)=>{t.setAttribute('aria-pressed','false');t.setAttribute('aria-label',`Place ${woodlandWords[i].hanzi}`)});status.textContent='Tile returned.';audioStatus.textContent='';if(previous!==null)tiles[previous].focus()
   }
   sound.addEventListener('click',()=>{soundOn=!soundOn;sound.textContent=soundOn?'Sound on':'Sound off';sound.setAttribute('aria-pressed',String(soundOn));if(!soundOn)window.speechSynthesis?.cancel()})
   tiles.forEach((tile,i)=>{
-    tile.addEventListener('click',()=>{if(suppressClick){suppressClick=false;return}place(i)})
+    tile.addEventListener('click',()=>{if(suppressClick){suppressClick=false;return}if(selected===i)reset();else place(i)})
     tile.addEventListener('pointerdown',e=>{if(e.button!==0)return;drag={id:e.pointerId,x:e.clientX,y:e.clientY,tile,index:i,moved:false};tile.setPointerCapture(e.pointerId)})
     tile.addEventListener('pointermove',e=>{if(!drag||drag.id!==e.pointerId)return;const x=e.clientX-drag.x,y=e.clientY-drag.y;if(Math.hypot(x,y)>8)drag.moved=true;if(drag.moved){tile.style.transform=`translate(${x}px,${y}px) rotate(-4deg)`;tile.classList.add('dragging')}})
     tile.addEventListener('pointerup',e=>{if(!drag)return;const d=drag;drag=null;tile.style.transform='';tile.classList.remove('dragging');if(d.moved){suppressClick=true;setTimeout(()=>suppressClick=false,0);const r=scene.getBoundingClientRect();if(e.clientX>=r.left&&e.clientX<=r.right&&e.clientY>=r.top&&e.clientY<=r.bottom)place(i)}})
     tile.addEventListener('pointercancel',()=>{drag=null;tile.style.transform='';tile.classList.remove('dragging')})
   })
-  controls.addEventListener('click',e=>{
-    const action=e.target.dataset.action;if(selected===null)return;const word=woodlandWords[selected]
-    if(action==='flip'){flipped=!flipped;face()}
-    if(action==='again')play()
-    if(action==='return')reset()
-    if(action==='keep')status.textContent=keep({id:`word-${selected+5}`,type:'word',index:selected+5,title:`${word.hanzi} · ${word.pinyin}`,text:`${word.meaning}. ${word.scene}`})?'Kept in your travel journal.':'Kept for this visit; browser storage is unavailable.'
-    if(action==='hear'){
-      flipped=true;face()
-      if(!soundOn){audioStatus.textContent='Turn sound on to hear Mandarin.';return}
-      const voice=window.speechSynthesis?.getVoices().find(v=>/^zh(?:[-_](?:CN|SG|TW|Hans|Hant))?$/i.test(v.lang))
-      if(!voice){audioStatus.textContent=`Mandarin audio is unavailable here. ${word.hanzi} · ${word.pinyin}.`;return}
-      window.speechSynthesis.cancel();const utterance=new SpeechSynthesisUtterance(word.hanzi);utterance.voice=voice;utterance.lang=voice.lang;utterance.rate=.75
-      utterance.onerror=e=>{if(!['interrupted','canceled'].includes(e.error))audioStatus.textContent=`Audio could not play. ${word.pinyin}.`};audioStatus.textContent='';window.speechSynthesis.speak(utterance)
-    }
+  function pronounce() {
+    const word=woodlandWords[selected]
+    if(!soundOn)return
+    const voice=window.speechSynthesis?.getVoices().find(v=>/^zh(?:[-_](?:CN|SG|TW|Hans|Hant))?$/i.test(v.lang))
+    if(!voice){audioStatus.textContent=`Mandarin audio is unavailable here. ${word.hanzi} · ${word.pinyin}.`;return}
+    window.speechSynthesis.cancel()
+    const utterance=new SpeechSynthesisUtterance(word.hanzi)
+    utterance.voice=voice;utterance.lang=voice.lang;utterance.rate=.75
+    utterance.onerror=e=>{if(!['interrupted','canceled'].includes(e.error))audioStatus.textContent=`Audio could not play. ${word.pinyin}.`}
+    audioStatus.textContent='';window.speechSynthesis.speak(utterance)
+  }
+  placed.addEventListener('click',()=>{
+    if(selected===null)return
+    flipped=!flipped;face()
+    if(flipped)pronounce();else window.speechSynthesis?.cancel()
+  })
+  keepButton.addEventListener('click',()=>{
+    if(selected===null)return
+    const word=woodlandWords[selected]
+    status.textContent=keep({id:`word-${selected+5}`,type:'word',index:selected+5,title:`${word.hanzi} · ${word.pinyin}`,text:`${word.meaning}. ${word.scene}`})?'Kept in your travel journal.':'Kept for this visit; browser storage is unavailable.'
   })
   new MutationObserver(()=>{if(root.closest('[hidden]')){clearTimeout(timer);scene.dataset.effect='';window.speechSynthesis?.cancel()}}).observe(root.parentElement,{attributes:true,attributeFilter:['hidden']})
   return {place}
