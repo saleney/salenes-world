@@ -17,3 +17,20 @@
 @keyframes woods-rain{from{transform:translate(3px,-16px)}to{transform:translate(-5px,16px)}}@keyframes woods-bird{from{transform:translate(160px,-100px)}to{transform:translate(0,0)}}@keyframes woods-rustle{to{transform:rotate(2deg)}}@keyframes woods-leaf{to{transform:translate(42px,-8px) rotate(5deg)}}
 @media(max-width:600px){.woods-top{align-items:flex-start}.woods-top p{max-width:180px}.woods-top button{white-space:nowrap}.woods-rack{gap:20px}.placed-tile{top:58%;width:17%;left:35%}.woods-tools{gap:4px 12px}.woods-clearing{margin-inline:-10px}}
 @media(prefers-reduced-motion:reduce){#woods-toy *{animation:none!important;transition:none!important}[data-effect=wind] .table-leaf{transform:translateX(24px)}}
+
+/* Two quiet rows keep all ten choices visible without a second control system. */
+.woods-rack{display:grid;grid-template-columns:repeat(5,64px);gap:18px 22px;justify-content:center;padding:25px 0}
+#woods-toy .woods-tile{width:64px;height:82px;font-size:38px}
+.woods-effect{opacity:0;pointer-events:none}
+[data-effect=sun] .effect-sun,[data-effect=moon] .effect-moon,[data-effect=cloud] .effect-cloud,[data-effect=flower] .effect-flower,[data-effect=tree] .effect-tree,[data-effect=water] .effect-water,[data-effect=fire] .effect-fire{opacity:1}
+[data-effect=moon] .woods-art{background:#46574f}[data-effect=moon] .woods-art>path:first-child{fill:#59695f}
+[data-effect=sun] .woods-art>path:first-child{fill:#eae3bd}
+[data-effect=cloud] .effect-cloud{animation:woods-cloud 6s ease-in-out both}
+[data-effect=flower] .effect-flower,[data-effect=tree] .effect-tree{transform-box:fill-box;transform-origin:center bottom;animation:woods-grow 1.1s ease-out both}
+[data-effect=water] .effect-water{animation:woods-water 1.5s ease-in-out 3}
+[data-effect=fire] .woods-flame{transform-box:fill-box;transform-origin:center bottom;animation:woods-flicker .8s ease-in-out 5 alternate}
+@keyframes woods-cloud{from{transform:translateX(-65px)}to{transform:translateX(100px)}}
+@keyframes woods-grow{from{transform:scaleY(.25)}to{transform:scaleY(1)}}
+@keyframes woods-water{50%{opacity:.65}}
+@keyframes woods-flicker{to{transform:scale(.92,1.08) rotate(3deg)}}
+@media(max-width:600px){.woods-rack{grid-template-columns:repeat(5,minmax(44px,54px));gap:13px 3px}#woods-toy .woods-tile{width:44px;height:64px;font-size:30px;justify-self:center;border-bottom-width:7px}.woods-tools{column-gap:12px}}

@@ -3,6 +3,13 @@ export const woodlandWords = [
   { hanzi: '雨', pinyin: 'yǔ', meaning: 'rain', effect: 'rain', duration: 4200, scene: 'A brief shower falls into the clearing.' },
   { hanzi: '鸟', pinyin: 'niǎo', meaning: 'bird', effect: 'bird', duration: 6500, scene: 'A bird lands beside the table.' },
   { hanzi: '风', pinyin: 'fēng', meaning: 'wind', effect: 'wind', duration: 3000, scene: 'Leaves rustle. A loose leaf slides across the table.' },
+  { hanzi: '日', pinyin: 'rì', meaning: 'sun', effect: 'sun', duration: 5500, scene: 'Sunlight warms the clearing.' },
+  { hanzi: '月', pinyin: 'yuè', meaning: 'moon', effect: 'moon', duration: 6500, scene: 'Moonlight falls between the trees.' },
+  { hanzi: '云', pinyin: 'yún', meaning: 'cloud', effect: 'cloud', duration: 6000, scene: 'A cloud wanders over the table.' },
+  { hanzi: '花', pinyin: 'huā', meaning: 'flower', effect: 'flower', duration: 5000, scene: 'A flower opens beside the table.' },
+  { hanzi: '树', pinyin: 'shù', meaning: 'tree', effect: 'tree', duration: 6000, scene: 'A young tree unfolds its branches.' },
+  { hanzi: '水', pinyin: 'shuǐ', meaning: 'water', effect: 'water', duration: 4500, scene: 'Water gathers in a small rippling pool.' },
+  { hanzi: '火', pinyin: 'huǒ', meaning: 'fire', effect: 'fire', duration: 4000, scene: 'A small fire flickers inside a stone ring.' },
 ]
 export function createWordWoods(root, keep) {
   root.innerHTML = `<div class="woods-top"><p>Drag a tile into the clearing, or tap it.</p><button type="button" id="woods-sound" aria-pressed="false">Sound off</button></div>
@@ -11,6 +18,13 @@ export function createWordWoods(root, keep) {
     <path fill="#e4e6d3" d="M0 0H720V440H0Z"/>
     <path fill="#c9d0b4" d="M0 238Q180 163 335 227T720 198V440H0Z"/>
     <path fill="#d9d4b7" d="M120 440Q240 230 420 254T720 440Z"/>
+    <g class="woods-effect effect-sun"><circle cx="355" cy="85" r="39" fill="#d4ad63"/></g>
+    <g class="woods-effect effect-moon"><path fill="#f2e8c8" d="M390 40A40 40 0 1 0 420 105A40 40 0 0 1 390 40"/></g>
+    <g class="woods-effect effect-cloud"><path fill="#f5f1e4" stroke="#a8af9d" d="M240 102Q220 78 246 68Q253 35 285 54Q318 34 337 66Q369 62 365 91Q360 109 330 105Z"/></g>
+    <g class="woods-effect effect-flower" stroke="#53684e" stroke-width="3"><path d="M160 305V247M160 285Q136 261 137 281Q142 294 160 292" fill="none"/><g fill="#b87860"><ellipse cx="160" cy="233" rx="9" ry="15"/><ellipse cx="146" cy="245" rx="15" ry="9"/><ellipse cx="174" cy="245" rx="15" ry="9"/><ellipse cx="160" cy="258" rx="9" ry="15"/><circle cx="160" cy="245" r="7" fill="#dfbd73"/></g></g>
+    <g class="woods-effect effect-tree"><path d="M520 298L514 191M517 245L491 219M515 228L544 196" stroke="#796a4e" stroke-width="6" fill="none"/><path fill="#819273" d="M482 230Q457 191 494 180Q482 152 516 145Q546 149 543 174Q579 176 565 210Q554 237 528 224Q501 244 482 230"/></g>
+    <g class="woods-effect effect-water" fill="none" stroke="#6e8c91" stroke-width="2"><ellipse cx="378" cy="278" rx="57" ry="15" fill="#a9c0bd"/><ellipse cx="378" cy="276" rx="34" ry="8"/><ellipse cx="378" cy="275" rx="15" ry="4"/></g>
+    <g class="woods-effect effect-fire"><ellipse cx="387" cy="283" rx="36" ry="10" fill="#a9a28e" stroke="#666957" stroke-width="5"/><path class="woods-flame" fill="#b96e43" d="M373 276Q352 259 378 230Q376 252 388 245Q407 219 397 209Q431 255 401 278Z"/><path fill="#e4b773" d="M381 278Q375 264 390 249Q405 272 394 279Z"/></g>
     <g fill="none" stroke="#67715c" stroke-width="13"><path d="M67 360L89 0M95 156L18 49M84 99L155 9M650 365L626 0M634 113L709 36M629 172L551 54"/></g>
     <g class="woods-leaves" fill="#78886a" stroke="#556b53" stroke-width="1.5"><path d="M0 80Q60 9 111 36Q75 98 0 80M84 121Q126 58 184 79Q152 140 84 121M565 63Q585 1 643 10Q633 67 565 63M635 155Q665 90 720 108Q696 165 635 155"/><path d="M0 180Q29 110 77 140Q64 196 0 180M523 132Q553 73 598 100Q588 149 523 132"/></g>
     <g stroke="#6b5644" stroke-width="3"><path fill="#ae8964" d="M115 315L579 298L637 375L65 390Z"/><path fill="#8b684e" d="M65 390L637 375V389L65 405Z"/><path d="M117 404L110 440M583 390L598 440" stroke-width="16"/><path d="M99 367L611 353M111 342L594 329" stroke-width="1"/></g>
@@ -49,7 +63,7 @@ export function createWordWoods(root, keep) {
     clearTimeout(timer); const word=woodlandWords[selected]
     scene.dataset.effect=''; void scene.offsetWidth; scene.dataset.effect=word.effect
     status.textContent=word.scene;clack()
-    timer=setTimeout(()=>{scene.dataset.effect=''; status.textContent=word.effect==='rain'?'The shower has passed.':word.effect==='bird'?'The bird has flown on.':'The leaves settle.'},word.duration)
+    timer=setTimeout(()=>{scene.dataset.effect=''; status.textContent='The clearing is quiet again.'},word.duration)
   }
   function place(index) {
     window.speechSynthesis?.cancel()
