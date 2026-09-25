@@ -453,6 +453,10 @@ function openPlace(id) {
   const place = places[id]
   if (!place) return
   rememberPlace(id)
+  if (place.href) {
+    window.location.assign(new URL(place.href, new URL(import.meta.env.BASE_URL, window.location.origin)))
+    return
+  }
   mapButtons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.place === id)))
   placePicker.value = id
   panelTitle.textContent = place.title
