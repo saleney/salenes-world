@@ -105,3 +105,10 @@
 .collection-list svg{width:36px;height:58px}.collection-list strong{margin-left:auto;font-weight:400;font-size:24px}
 .collection-total,.collection-empty{font-size:17px}
 @media(max-width:600px){.basket{left:37%;top:55%}.harvest-sign{left:61%;top:10%;font-size:14px}.recipe-sign{left:3%;top:62%;font-size:14px;padding:6px}.recipe-picker{gap:2px}.recipe-picker>span{flex-basis:100%;font-size:16px}.recipe-picker button{flex:1;padding:8px 3px;font-size:15px}.seed-packets{gap:20px 14px}.packet span{font-size:15px}}
+
+/* Direct manipulation should not start browser text selection or image dragging.
+   Reading content outside these controls remains selectable. */
+.garden,.garden *,button,button *,summary{
+ -webkit-user-select:none;user-select:none;-webkit-touch-callout:none;
+}
+.garden img,.garden svg,button svg{ -webkit-user-drag:none; }

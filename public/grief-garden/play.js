@@ -1,5 +1,9 @@
 import {produce,recipes,growthStage,dropPoint} from './produce.js';
 const $=s=>document.querySelector(s),garden=$('.garden'),soil=$('.soil'),hint=$('#hint');
+// Keep native image dragging from interrupting the garden’s pointer gestures.
+for(const surface of [garden,...document.querySelectorAll('button'),$('.seed-packets')]){
+ surface.addEventListener('dragstart',e=>e.preventDefault());
+}
 const sprout='<svg viewBox="0 0 75 170" aria-hidden="true"><path d="M38 157q-4-31 1-48" stroke="#889560" stroke-width="4" fill="none"/><path d="M37 130Q12 121 18 105q22-2 19 25m1-10q5-31 24-21 1 20-24 21" fill="#809558"/></svg>';
 const key='richard-juice-garden-v1';let plants=[],harvest={},durable=true,recipe=0,selected=null,drag=null,suppress=0;
 try{const data=JSON.parse(localStorage.getItem(key)||'{"plants":[],"harvest":{}}');if(!Array.isArray(data.plants)||data.plants.some(p=>!p||!produce[p.kind]||typeof p.id!=='string'||!Number.isFinite(p.created)||!Number.isFinite(p.x)||!Number.isFinite(p.y)||p.x<0||p.x>1||p.y<0||p.y>1)||!data.harvest||typeof data.harvest!=='object'||Object.values(data.harvest).some(n=>!Number.isInteger(n)||n<0))throw Error();plants=data.plants;harvest=data.harvest;}catch{durable=false;$('#storage').textContent='Saved garden data could not be read. It has not been changed. This garden lasts for this visit.';}

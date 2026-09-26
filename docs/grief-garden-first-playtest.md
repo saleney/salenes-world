@@ -20,3 +20,8 @@ An interaction can work technically and still be invisible to a visitor. The for
 ## Verification and next observation
 Browser checks at 320, 390, 430 and 1160px confirm the scene fits, recipe-choice buttons meet 44px height, and no separate drag controls remain. Direct packet drag into soil, basket quantities, exterior recipe switching and handwriting-first were exercised. Existing three unit tests pass. These browser pointer tests do not prove physical iPhone Safari touch behavior.
 Next: repeat the informal phone playtest. Without coaching, can a visitor notice picking, switch ingredients, drag a packet directly, and open the basket? Observe scrolling around packets too. Treat these changes as hypotheses until that observation happens.
+
+
+### Follow-up: accidental highlighting
+
+The visitor reported that clicking sometimes highlighted content. Garden objects and button labels now disable native text selection and touch callouts; scene images cannot start native browser image dragging. The recipe transcription and About text remain selectable, and keyboard focus outlines are unchanged. This keeps browser selection gestures from competing with picking and planting. Physical iPhone confirmation remains a follow-up.
