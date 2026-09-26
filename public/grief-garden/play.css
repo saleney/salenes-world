@@ -112,3 +112,24 @@
  -webkit-user-select:none;user-select:none;-webkit-touch-callout:none;
 }
 .garden img,.garden svg,button svg{ -webkit-user-drag:none; }
+/* Garden furniture: enamel plant marker, a bench plaque, and a tied basket tag. */
+.harvest-sign,.recipe-sign{
+ background:#354d40;color:#f5eed9;border:1px solid #a6aa86;border-radius:2px;
+ font:400 15px/1.25 Georgia,serif;letter-spacing:.015em;
+ box-shadow:inset 0 0 0 3px #354d40,inset 0 0 0 4px #8b9574,1px 3px 2px #302f2940;
+ padding:10px 14px;text-shadow:0 1px #20382b;
+}
+.harvest-sign{left:72%;top:51%;transform:rotate(3deg);isolation:isolate}
+.harvest-sign::after{content:"";position:absolute;top:100%;left:49%;width:5px;height:30px;background:linear-gradient(90deg,#626952,#93977a,#515c46);box-shadow:2px 2px 1px #393c2e30;z-index:-1}
+.recipe-sign{left:9%;top:51%;min-height:44px;transform:rotate(-4deg);text-decoration:none;padding:10px 16px}
+.recipe-sign::before,.recipe-sign::after{content:"";position:absolute;top:48%;width:3px;height:3px;border-radius:50%;background:#c0b99a;box-shadow:0 1px 1px #18291f}
+.recipe-sign::before{left:7px}.recipe-sign::after{right:7px}
+.recipe-sign:hover{background-color:#415b49}
+.basket .basket-caption{top:75%;left:56%;font:italic 12px Georgia,serif;background:#ded0ad;color:#493f2f;border:1px solid #bba77e;border-radius:1px;padding:3px 7px;transform:translateX(-50%) rotate(7deg);box-shadow:1px 2px 1px #493a2a33;text-shadow:none}
+.basket .basket-caption::before{content:"";position:absolute;left:12%;bottom:90%;height:13px;width:5px;border:1px solid #cbb891;border-radius:50%;transform:rotate(-12deg)}
+@media(max-width:600px){
+ .harvest-sign{left:65%;top:49%;font-size:13px;padding:8px 11px}
+ .harvest-sign::after{height:19px}
+ .recipe-sign{left:6%;top:51%;font-size:13px;padding:8px 13px;max-width:32%}
+ .basket .basket-caption{font-size:11px;padding:2px 5px}
+}
