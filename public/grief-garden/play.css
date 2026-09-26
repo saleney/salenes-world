@@ -87,3 +87,21 @@
 .garden{width:100%;min-width:0}
 @media(max-width:600px){.garden{aspect-ratio:auto;height:max(330px,66.667vw)}}
 .choosing .crop{pointer-events:none}.leaf.picked{cursor:default;opacity:.55}.leaf.picked:hover{filter:none}
+/* First visitor playtest: let the objects explain where to begin. */
+.basket{left:37%;pointer-events:auto;cursor:pointer;min-width:48px;min-height:48px}
+.basket .basket-caption{display:block;top:110%;font-size:13px;background:#f4f0e5d9;width:max-content;left:50%;transform:translateX(-50%);padding:2px 5px}
+.basket>*{pointer-events:none}.basket:focus-visible{outline-offset:12px}
+.harvest-sign,.recipe-sign{position:absolute;z-index:9;font:italic 15px Georgia,serif;background:#f2ead6ed;color:#334832;padding:6px 9px;box-shadow:1px 2px 1px #493a2a2b}
+.harvest-sign{left:70%;top:21%;transform:rotate(3deg);pointer-events:none}
+.recipe-sign{left:6%;top:63%;min-height:44px;transform:rotate(-2deg);text-decoration:underline;text-underline-offset:4px}
+.recipe-picker{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:20px 0 4px;border-bottom:1px solid #c4bea7;padding-bottom:10px}
+.recipe-picker>span{font-style:italic;margin-right:auto}.recipe-picker button{min-height:48px;padding:8px 12px;font-size:16px}
+.recipe-picker button[aria-pressed=true]{text-decoration:underline;text-underline-offset:6px;font-weight:bold}
+.packet{touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;cursor:grab}
+.packet:active{cursor:grabbing}.seed-packets{gap:20px 18px;padding-right:22px}
+#collection{width:min(480px,calc(100vw - 24px));padding:20px 24px}
+#collection .close{font-size:28px;min-width:44px;min-height:44px;text-decoration:none}
+.collection-list{list-style:none;padding:0;margin:12px 0}.collection-list li{display:flex;align-items:center;gap:18px;padding:6px 0;border-bottom:1px solid #d0cab6;font-size:18px}
+.collection-list svg{width:36px;height:58px}.collection-list strong{margin-left:auto;font-weight:400;font-size:24px}
+.collection-total,.collection-empty{font-size:17px}
+@media(max-width:600px){.basket{left:37%;top:55%}.harvest-sign{left:61%;top:10%;font-size:14px}.recipe-sign{left:3%;top:62%;font-size:14px;padding:6px}.recipe-picker{gap:2px}.recipe-picker>span{flex-basis:100%;font-size:16px}.recipe-picker button{flex:1;padding:8px 3px;font-size:15px}.seed-packets{gap:20px 14px}.packet span{font-size:15px}}
