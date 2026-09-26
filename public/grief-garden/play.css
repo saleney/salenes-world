@@ -29,3 +29,61 @@
 .basket .basket-produce{inset:-43% 7% 11%}.basket .basket-produce svg{bottom:-13%;height:125%;width:42%}
 .recipe-origin{margin:0 0 20px;font-size:15px;line-height:1.5;text-align:center}
 @media(max-width:600px){.bench .bench-card{top:36%;left:28%}.basket{left:47%;top:53%;width:14%;height:10%}.recipe-origin{font-size:14px;margin-bottom:16px}}
+
+/* Presentation pass: tactile objects, legible recipes, reachable phone controls. */
+.seed-packets{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:16px 12px;overflow:visible;scroll-snap-type:none;padding:8px 3px 14px}
+.seed-option{min-width:0;position:relative;align-self:start}
+.packet{width:100%;min-height:140px;touch-action:pan-y;cursor:pointer;padding:12px 8px 10px;background:#e8e1cc;border-color:#aca88b;box-shadow:1px 2px 2px #5c4b2820;transform:rotate(-1deg)}
+.seed-option:nth-child(even) .packet{transform:rotate(1deg)}
+.packet span{font-size:16px;line-height:1.3;overflow-wrap:break-word}
+.packet svg{height:78px;filter:url(#paint-edge);opacity:.94}
+.packet-grip{display:block;min-width:44px;min-height:44px;margin:2px auto 0;padding:8px 14px;touch-action:none;cursor:grab;font:italic 14px Georgia,serif;text-decoration:underline;text-underline-offset:4px}
+.packet-grip:active{cursor:grabbing}
+.leaf{touch-action:pan-y}
+.leaf svg,.crop svg{opacity:.94;filter:url(#paint-edge) drop-shadow(1px 2px 1px #263d2726)}
+.basket{filter:drop-shadow(2px 5px 2px #493d333d)}
+.basket::before,.basket::after,.basket .basket-handle{filter:url(#paint-edge)}
+.basket::after{border-radius:9% 6% 35% 31% / 12% 9% 45% 48%;background:repeating-linear-gradient(88deg,transparent 0 11px,#72583b22 11px 13px),repeating-linear-gradient(-2deg,#a4875e 0 4px,#b4a07b 4px 7px,#917d5d 7px 8px)}
+.bench .bench-card{box-shadow:1px 4px 3px #382b2555;border-bottom:1px solid #d0c4a8;transition:filter .2s}
+.bench:hover .bench-card,.bench:focus-visible .bench-card{filter:brightness(1.08)}
+.seed-dot{box-shadow:0 2px 0 3px #49382b66;animation:seed-settle .7s ease-out}
+.crop.sprout svg{animation:sprouting 2.5s ease-out}.crop.ready svg{animation:ripe-unfold .8s ease-out}
+#spots{padding:14px 0 4px;display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+#spots>span{width:100%;font-style:italic}#spots button{min-height:48px;margin:0;padding:10px 12px}
+#recipes{width:min(760px,calc(100vw - 24px));max-height:calc(100dvh - 24px);overscroll-behavior:contain;padding:18px 28px 24px}
+#recipes>form{position:sticky;top:-18px;z-index:2;background:#f4f0e5;height:44px}
+#recipes .recipe-origin{font-size:16px;margin:6px 0 20px}
+#recipes .cards{gap:4px;border-bottom:1px solid #c4bea7;padding-bottom:12px;flex-wrap:nowrap}
+#recipes .cards button{transform:none;background:none;color:#2c4435;border:0;font-size:16px;min-height:48px;outline:none;max-width:none;margin:0;box-shadow:none}
+#recipes .cards button svg{display:none}
+#recipes .cards button[aria-pressed=true]{text-decoration:underline;text-underline-offset:7px;font-weight:bold}
+#recipes .cards button:focus-visible{outline:2px solid #a84e32;outline-offset:0}
+#recipes .recipe-name{font-size:26px;font-weight:400;text-align:center;margin:18px 0 12px}
+.card-turn{min-height:0}.card-turn #transcript{font-size:19px;line-height:1.65;padding:20px 26px;min-height:0;background:#ebe5d3;margin:0;box-shadow:1px 3px 5px #44391b15}
+#transcript p{margin:0 0 9px}#transcript p:last-child{margin-bottom:0}
+.card-controls{gap:6px;margin-top:14px}.card-controls button{min-width:48px;min-height:48px;font-size:16px}
+#recipes>a{font-size:14px;min-height:44px;padding:12px 0}
+.sitting .garden{transform:none}
+@keyframes seed-settle{from{transform:translateY(-5px);opacity:0}to{transform:translateY(0);opacity:1}}
+@keyframes ripe-unfold{from{transform:scale(.96)}to{transform:scale(1)}}
+@media(max-width:600px){
+ body{font-size:18px}h1{font-size:38px;line-height:1.1;margin:18px 0 24px}
+ .garden{min-height:330px}.seed-packets{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 10px}
+ .packet{min-height:135px;padding:10px 5px}.packet span{font-size:16px}.packet svg{height:67px}
+ .seed-shelf>p,.seed-shelf>p>span{font-size:16px}.seed-shelf>p>span{line-height:1.5;margin-top:6px}
+ .garden .leaf{left:calc(56% + var(--pick-column)*14%)!important;top:calc(21% + var(--pick-row)*14%)!important;width:13%;height:17%!important;min-width:44px;min-height:48px;transform:none}
+ .leaf svg{width:70%;margin:auto}.planted .crop{min-width:44px;min-height:48px}
+ .tools p,details,.dedication{font-size:17px}.tools p{line-height:1.6}
+ #recipes{padding:12px 16px 20px;width:calc(100vw - 16px);max-height:calc(100dvh - 16px)}
+ #recipes>form{top:-12px}#recipes .recipe-origin{font-size:17px;text-align:left;line-height:1.5;margin:4px 0 16px}
+ #recipes .cards button{font-size:15px;padding:8px 3px!important}
+ .card-turn #transcript{font-size:18px;line-height:1.6;padding:18px 16px}
+ .card-controls button{padding:10px;margin:0}.card-controls #flip-card{flex:1}
+ #spots button{flex:1 1 40%;font-size:16px}
+}
+@media(max-width:360px){.seed-packets{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+/* An aspect ratio plus min-height must not widen the scene behind its clipping window. */
+.garden{width:100%;min-width:0}
+@media(max-width:600px){.garden{aspect-ratio:auto;height:max(330px,66.667vw)}}
+.choosing .crop{pointer-events:none}.leaf.picked{cursor:default;opacity:.55}.leaf.picked:hover{filter:none}
