@@ -25,3 +25,8 @@ Next: repeat the informal phone playtest. Without coaching, can a visitor notice
 ### Follow-up: accidental highlighting
 
 The visitor reported that clicking sometimes highlighted content. Garden objects and button labels now disable native text selection and touch callouts; scene images cannot start native browser image dragging. The recipe transcription and About text remain selectable, and keyboard focus outlines are unchanged. This keeps browser selection gestures from competing with picking and planting. Physical iPhone confirmation remains a follow-up.
+
+
+### Clearer scene and harvest movement
+Removed the painted tall sunflowers and empty foreground pot, keeping the planting bed. Built-in image editing produced `public/grief-garden/assets/courtyard-cleared.png`; the original remains available. Prompt: remove the two tall back-right sunflowers and empty lower-left pot, restore wall/foliage/gravel, preserve all other objects, perspective, palette, and framing.
+Harvest now lifts, travels in an arc, and drops into the basket over 1.25 seconds. Reduced-motion preferences still skip travel.

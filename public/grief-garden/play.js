@@ -18,7 +18,14 @@ function sendToBasket(source,kind){
  const flight=document.createElement('div');flight.className='harvest-flight';flight.setAttribute('aria-hidden','true');flight.innerHTML=produce[kind];
  Object.assign(flight.style,{left:start.left+'px',top:start.top+'px',width:start.width+'px',height:start.height+'px'});document.body.append(flight);
  const dx=basket.left+basket.width*.5-(start.left+start.width*.5),dy=basket.top+basket.height*.25-(start.top+start.height*.55);
- const motion=flight.animate([{transform:'translate(0,0) rotate(0deg) scale(1)',opacity:1},{transform:'translate(0,-4px) rotate(-6deg) scale(.98)',opacity:1,offset:.15},{transform:`translate(${dx*.55}px,${dy*.45-30}px) rotate(-12deg) scale(.8)`,opacity:1,offset:.55},{transform:`translate(${dx}px,${dy}px) rotate(6deg) scale(.7)`,opacity:1}],{duration:850,easing:'ease-in-out'});
+ const lift=Math.max(35,Math.min(85,start.height*.65));
+ const motion=flight.animate([
+  {transform:'translate(0,0) rotate(0deg) scale(1)',opacity:1},
+  {transform:`translate(0,${-lift}px) rotate(-8deg) scale(1.12)`,opacity:1,offset:.2},
+  {transform:`translate(${dx*.55}px,${dy*.45-lift}px) rotate(-14deg) scale(1)`,opacity:1,offset:.58},
+  {transform:`translate(${dx}px,${dy-18}px) rotate(5deg) scale(.65)`,opacity:1,offset:.87},
+  {transform:`translate(${dx}px,${dy+8}px) rotate(5deg) scale(.35)`,opacity:0}
+ ],{duration:1250,easing:'ease-in-out',fill:'forwards'});
  const finish=()=>{flight.remove();renderBasket();$('.basket').animate([{transform:'rotate(-3deg) translateY(0)'},{transform:'rotate(-2deg) translateY(2px)'},{transform:'rotate(-3deg) translateY(0)'}],{duration:220});};motion.onfinish=finish;motion.oncancel=()=>{flight.remove();renderBasket();};
 }
 function pick(b){if(b.disabled)return;const kind=b.dataset.kind;harvest[kind]=(harvest[kind]||0)+1;save();sendToBasket(b,kind);b.disabled=true;b.classList.add('picked');b.setAttribute('aria-label',kind+' picked');b.innerHTML='<svg viewBox="0 0 75 170" aria-hidden="true"><path d="M31 155l5-16 5 16" fill="none" stroke="#7b7950" stroke-width="3"/></svg>';hint.textContent=`${kind} picked for ${recipes[recipe].name.toLowerCase()} juice.`;}
