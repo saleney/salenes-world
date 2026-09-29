@@ -133,3 +133,8 @@
  .recipe-sign{left:6%;top:51%;font-size:13px;padding:8px 13px;max-width:32%}
  .basket .basket-caption{font-size:11px;padding:2px 5px}
 }
+
+.garden-music{max-width:540px;margin:28px 0 22px}
+.garden-music h2{font:italic 18px Georgia,serif;margin:0 0 12px}
+.garden-music iframe{display:block;width:100%;border:0;border-radius:12px}
+.garden-music>a{display:inline-flex;align-items:center;min-height:44px;font-size:14px}
