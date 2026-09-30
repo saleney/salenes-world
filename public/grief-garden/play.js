@@ -22,7 +22,7 @@ function sendToBasket(source,kind){
  // One uninterrupted arc: travel begins on release, with no separate lift or dwell.
  const frames=Array.from({length:41},(_,i)=>{
   const t=i/40;
-  return {offset:t,transform:`translate(${dx*t}px,${dy*t-4*lift*t*(1-t)}px) rotate(${5*t}deg) scale(${1-.65*t})`,opacity:t<.9?1:(1-t)/.1};
+  return {offset:t,transform:`translate(${dx*t}px,${dy*t-4*lift*t*(1-t)}px)`,opacity:t<.9?1:(1-t)/.1};
  });
  const motion=flight.animate(frames,{duration:2000,easing:'linear',fill:'forwards'});
  const finish=()=>{flight.remove();renderBasket();$('.basket').animate([{transform:'rotate(-3deg) translateY(0)'},{transform:'rotate(-2deg) translateY(2px)'},{transform:'rotate(-3deg) translateY(0)'}],{duration:220});};motion.onfinish=finish;motion.oncancel=()=>{flight.remove();renderBasket();};

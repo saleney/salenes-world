@@ -162,8 +162,8 @@
 .garden .harvest-object{touch-action:none;overflow:visible;z-index:6;perspective:500px}
 .harvest-volume{display:block;width:100%;height:100%;transform-origin:50% 94%;transition:transform .45s cubic-bezier(.2,.8,.2,1);transform:rotateY(-14deg)}
 .harvest-volume svg{width:100%!important;height:100%;overflow:visible;filter:drop-shadow(4px 5px 2px #20362655)}
-.harvest-held .harvest-volume{transform:translateY(-9px) rotateX(-28deg) rotateY(var(--bend,24deg)) scale(1.25)}
-.harvest-plucking .harvest-volume{transform:translateY(-27px) rotateX(-12deg) rotateY(-20deg) scale(1.15)}
+.harvest-held .harvest-volume{transform:translateY(-9px) rotateX(-28deg) rotateY(var(--bend,24deg))}
+.harvest-plucking .harvest-volume{transform:translateY(-27px) rotateX(-12deg) rotateY(-20deg)}
 .harvest-object.picked::after{display:none}
 /* Directly trying this one object opts into its demonstration, not ambient motion. */
 .harvest-volume{transition:transform .45s cubic-bezier(.2,.8,.2,1)!important}
@@ -173,3 +173,11 @@
 /* Separate the two rows' hit areas so a front ingredient cannot steal a back tap. */
 .garden .harvest-object{top:calc(24% + var(--bed-column)*1.5% + var(--bed-row)*14%)!important;bottom:auto!important;height:max(44px,calc(var(--scene-height)*.10))!important;min-height:44px}
 .harvest-object .harvest-volume{position:absolute;top:0;left:0;right:0;height:calc(var(--scene-height)*(.20 - var(--bed-row)*.12));pointer-events:none}
+
+/* Hit the painted silhouette, including portions outside the small layout box.
+   Transparent button rectangles must not steal touches from neighboring produce. */
+.garden .harvest-object{pointer-events:none}
+.garden .harvest-object .harvest-volume svg{pointer-events:visiblePainted}
+.garden .harvest-object:disabled svg{pointer-events:none}
+/* The native button must also enclose all painted pixels for Safari hit testing. */
+.garden .harvest-object{height:max(44px,calc(var(--scene-height)*(.20 - var(--bed-row)*.12)))!important}
