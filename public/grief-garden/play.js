@@ -13,19 +13,18 @@ function renderPlants(){const root=$('.planted');const focus=document.activeElem
 function plantAt(x,y,kind=selected){if(!kind)return;if(plants.length>=18){choose(null);hint.textContent='The bed is full. Harvest something ripe to make room.';return;}plants.push({id:crypto.randomUUID(),kind,x:Math.max(0,Math.min(1,x)),y:Math.max(0,Math.min(1,y)),created:Date.now()});save();renderPlants();choose(null);hint.textContent=`${kind} planted. Watch for a little sprout.`;}
 function renderBasket(){const total=Object.values(harvest).reduce((a,b)=>a+b,0);$('.basket').setAttribute('aria-label',total?`Open basket. Your harvest: ${Object.entries(harvest).map(([k,n])=>`${n} ${k}`).join(', ')}`:'Open your empty harvest basket');$('.basket-caption').textContent='your harvest';const tray=$('.basket-produce');tray.replaceChildren();Object.entries(harvest).filter(([k,n])=>produce[k]&&n).slice(-5).forEach(([kind],i)=>{const wrap=document.createElement('span');wrap.innerHTML=produce[kind];const art=wrap.firstElementChild;art.style.left=(i*15)+'%';art.style.transform=`rotate(${i*9-18}deg)`;tray.append(art);});}
 function sendToBasket(source,kind){
- const start=source.getBoundingClientRect(),basket=$('.basket').getBoundingClientRect();
+ const start=(source.querySelector('.harvest-volume svg')||source).getBoundingClientRect(),basket=$('.basket').getBoundingClientRect();
  if(matchMedia('(prefers-reduced-motion: reduce)').matches&&!source.classList.contains('harvest-object')){renderBasket();return;}
  const flight=document.createElement('div');flight.className='harvest-flight';flight.setAttribute('aria-hidden','true');flight.innerHTML=produce[kind];
  Object.assign(flight.style,{left:start.left+'px',top:start.top+'px',width:start.width+'px',height:start.height+'px'});document.body.append(flight);
  const dx=basket.left+basket.width*.5-(start.left+start.width*.5),dy=basket.top+basket.height*.25-(start.top+start.height*.55);
  const lift=Math.max(35,Math.min(85,start.height*.65));
- const motion=flight.animate([
-  {transform:'translate(0,0) rotate(0deg) scale(1)',opacity:1},
-  {transform:`translate(0,${-lift}px) rotate(-8deg) scale(1.12)`,opacity:1,offset:.2},
-  {transform:`translate(${dx*.55}px,${dy*.45-lift}px) rotate(-14deg) scale(1)`,opacity:1,offset:.58},
-  {transform:`translate(${dx}px,${dy-18}px) rotate(5deg) scale(.65)`,opacity:1,offset:.87},
-  {transform:`translate(${dx}px,${dy+8}px) rotate(5deg) scale(.35)`,opacity:0}
- ],{duration:2000,easing:'ease-in-out',fill:'forwards'});
+ // One uninterrupted arc: travel begins on release, with no separate lift or dwell.
+ const frames=Array.from({length:41},(_,i)=>{
+  const t=i/40;
+  return {offset:t,transform:`translate(${dx*t}px,${dy*t-4*lift*t*(1-t)}px) rotate(${5*t}deg) scale(${1-.65*t})`,opacity:t<.9?1:(1-t)/.1};
+ });
+ const motion=flight.animate(frames,{duration:2000,easing:'linear',fill:'forwards'});
  const finish=()=>{flight.remove();renderBasket();$('.basket').animate([{transform:'rotate(-3deg) translateY(0)'},{transform:'rotate(-2deg) translateY(2px)'},{transform:'rotate(-3deg) translateY(0)'}],{duration:220});};motion.onfinish=finish;motion.oncancel=()=>{flight.remove();renderBasket();};
 }
 function pick(b){if(b.disabled)return;const kind=b.dataset.kind;harvest[kind]=(harvest[kind]||0)+1;save();sendToBasket(b,kind);b.disabled=true;b.classList.add('picked');b.setAttribute('aria-label',kind+' picked');b.innerHTML='<svg viewBox="0 0 75 170" aria-hidden="true"><path d="M31 155l5-16 5 16" fill="none" stroke="#7b7950" stroke-width="3"/></svg>';hint.textContent=`${kind} picked for ${recipes[recipe].name.toLowerCase()} juice.`;}
@@ -43,12 +42,13 @@ $('.basket').addEventListener('click',showCollection);$('#collection').addEventL
 function attachHarvest(button){
  button.classList.add('harvest-object');
  button.innerHTML=harvestArt(button.dataset.kind);
- let pointer=null,busy=false,timer;
+ let pointer=null,busy=false;
  function reset(){button.classList.remove('harvest-held','harvest-plucking');pointer=null;}
  function release(){
   if(busy||button.disabled)return;
-  busy=true;button.classList.remove('harvest-held');button.classList.add('harvest-plucking');
-  timer=setTimeout(()=>{if(button.isConnected)pick(button);reset();busy=false;},620);
+  busy=true;
+  if(button.isConnected)pick(button);
+  reset();busy=false;
  }
  button.addEventListener('pointerdown',e=>{
   if(e.button!==0||button.disabled||busy)return;
