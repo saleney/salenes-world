@@ -138,3 +138,38 @@
 .garden-music h2{font:italic 18px Georgia,serif;margin:0 0 12px}
 .garden-music iframe{display:block;width:100%;border:0;border-radius:12px}
 .garden-music>a{display:inline-flex;align-items:center;min-height:44px;font-size:14px}
+/* Keep the scene and planting coordinates fixed; animate individual artwork only. */
+.depth-tools{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:0 0 12px;font-size:14px}
+.depth-tools>span{margin-right:auto;font-style:italic}
+.depth-tools button{min-height:44px;border:1px solid #a6aa86;border-radius:3px;padding:6px 12px}
+.depth-tools button[aria-pressed=true]{background:#354d40;color:#f5eed9}
+.garden,.sitting .garden{transform:none;transition:none}
+.planted{position:absolute;inset:0;pointer-events:none}
+.planted .crop{pointer-events:auto}
+.choosing .planted .crop{pointer-events:none}
+.leaf svg{transform-origin:50% 95%}
+/* Root every back-bed plant along the painted soil's sloping upper edge. */
+.garden .leaf{left:calc(64% + var(--bed-column)*8% + var(--bed-row)*1%)!important;top:auto!important;bottom:calc(56% - var(--bed-column)*1.5% - var(--bed-row)*2%)!important;width:7.5%;height:calc(20% - var(--bed-row)*6%)!important;transform:none;min-height:44px}
+.leaf svg,.crop svg{filter:url(#paint-edge) drop-shadow(3px 4px 2px #28332155);transform-origin:50% 95%}
+.leaf::after{content:"";position:absolute;width:42%;height:4%;left:29%;bottom:3%;background:#342b2366;border-radius:50%;filter:blur(2px);pointer-events:none}
+/* Override the generic basket-span width so the clipping box stays inside its rim. */
+.basket .basket-produce{inset:0 9% 12%;width:auto;height:auto;overflow:hidden;border-radius:45% 45% 20% 20%;clip-path:inset(0 round 35% 35% 15% 15%)}
+.basket .basket-produce svg{bottom:-18%;width:34%;height:105%;transform-origin:50% 90%}
+.bench .bench-card{box-shadow:2px 5px 3px #382b2566}
+@media(max-width:600px){.garden .leaf{width:10%;min-width:40px}.leaf svg{width:85%}}
+.basket .basket-produce{display:block}
+/* The test chard bends around its rooted stem, with a folded light/dark leaf surface. */
+.garden .harvest-object{touch-action:none;overflow:visible;z-index:6;perspective:500px}
+.harvest-volume{display:block;width:100%;height:100%;transform-origin:50% 94%;transition:transform .45s cubic-bezier(.2,.8,.2,1);transform:rotateY(-14deg)}
+.harvest-volume svg{width:100%!important;height:100%;overflow:visible;filter:drop-shadow(4px 5px 2px #20362655)}
+.harvest-held .harvest-volume{transform:translateY(-9px) rotateX(-28deg) rotateY(var(--bend,24deg)) scale(1.25)}
+.harvest-plucking .harvest-volume{transform:translateY(-27px) rotateX(-12deg) rotateY(-20deg) scale(1.15)}
+.harvest-object.picked::after{display:none}
+/* Directly trying this one object opts into its demonstration, not ambient motion. */
+.harvest-volume{transition:transform .45s cubic-bezier(.2,.8,.2,1)!important}
+
+/* Preserve the original chard brush texture inside the interactive wrapper. */
+.harvest-volume svg{filter:url(#paint-edge) drop-shadow(3px 4px 2px #28332155)}
+/* Separate the two rows' hit areas so a front ingredient cannot steal a back tap. */
+.garden .harvest-object{top:calc(24% + var(--bed-column)*1.5% + var(--bed-row)*14%)!important;bottom:auto!important;height:max(44px,calc(var(--scene-height)*.10))!important;min-height:44px}
+.harvest-object .harvest-volume{position:absolute;top:0;left:0;right:0;height:calc(var(--scene-height)*(.20 - var(--bed-row)*.12));pointer-events:none}
