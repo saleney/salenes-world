@@ -181,3 +181,29 @@
 .garden .harvest-object:disabled svg{pointer-events:none}
 /* The native button must also enclose all painted pixels for Safari hit testing. */
 .garden .harvest-object{height:max(44px,calc(var(--scene-height)*(.20 - var(--bed-row)*.12)))!important}
+
+/* Front-bed touch movement is isolated from both root position and growth scale. */
+.planted .crop{touch-action:none;cursor:grab;perspective:600px}
+.crop-art{display:block;position:absolute;inset:0;transform-origin:50% 95%;transition:transform .55s cubic-bezier(.2,.9,.25,1)}
+.crop-held{cursor:grabbing!important}
+.crop-held .crop-art{transform:rotate(var(--plant-bend,-9deg)) rotateX(-12deg) translateY(-3px)}
+.crop:focus-visible .crop-art{filter:brightness(1.1)}
+.card-turn.turned #transcript{animation:none}
+body.basket-open{overflow:hidden}
+#collection{max-height:calc(100dvh - 32px);overscroll-behavior:contain;box-shadow:0 12px 45px #23342933;background:#f4f0e5}
+.sheet-grip{display:none}
+#collection>form{position:sticky;top:0;background:#f4f0e5;z-index:2}
+#collection h2{font-size:28px}
+@media(max-width:600px){
+ #collection{position:fixed;inset:auto 0 0;width:100%;max-width:100%;margin:0;max-height:80dvh;border:1px solid #c2b99d;border-bottom:0;border-radius:18px 18px 0 0;padding:0 22px calc(22px + env(safe-area-inset-bottom));overflow:auto}
+ #collection .sheet-grip{display:flex;align-items:center;justify-content:center;position:sticky;top:0;z-index:3;width:100%;height:44px;margin:0;padding:0;border:0;background:#f4f0e5;touch-action:none;cursor:grab}
+ .sheet-grip span{display:block;width:42px;height:4px;border-radius:4px;background:#9a987e}
+ #collection>form{top:44px;height:44px;margin-top:-4px}
+ #collection h2{margin-top:0}
+ .collection-list li{min-height:72px}
+}
+@media(prefers-reduced-motion:reduce){
+ .harvest-volume,.crop-art{transition:none!important}
+ .crop-held .crop-art{transform:none;filter:brightness(1.12)}
+ .harvest-held .harvest-volume{transform:none;filter:brightness(1.12)}
+}

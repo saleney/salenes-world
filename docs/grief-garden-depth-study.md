@@ -16,3 +16,14 @@ User rejected whole-scene/layer movement and reported plants appearing in the sk
 Approved original ingredient artwork with local bend-and-pluck motion, and a two-second basket journey. Applied to all back-bed ingredients. Removed scene-wide movement and prototype controls from the production experience. Preserved production saved-garden key and personal text.
 
 Final fixes: full-size planted containing block; back-bed roots following soil slope; basket clipping width and mobile visibility; separate front/back ingredient hit areas. Pending plucks do not collect after their buttons are detached by recipe changes. Mouse and keyboard picking verified with exact basket counts, and target-center hit checks passed at 320, 390, 430 and 1160 CSS pixels. Build and three garden unit tests pass. Physical iPhone touch remains untested.
+
+## 2026-09-30 — Basket sheet and front-bed touch
+
+Adapted the resource review into the existing native JavaScript implementation:
+- Phone basket opens as a warm paper bottom sheet with a scrollable inventory, a drag-to-dismiss grip, and a persistent close button. Desktop keeps a centered dialog.
+- Recipe changes and handwriting/transcript switches use a short, gentle card transition; original handwriting is still first.
+- Each planted ingredient has a separate touch wrapper. Bending that wrapper preserves the planted root and the inner SVG growth animation. Unripe plants settle back; ripe plants harvest into the basket. Stage updates defer while a plant is held.
+- Harvest travel measures the visible crop SVG, preserving its size. Reduced-motion preference skips flight and animated panel/card transitions.
+- No new dependencies. beUI supplied the bottom-sheet interaction reference; the existing native animation API was sufficient for this scope.
+
+Validation: existing 3 growth/drop/recipe tests and production build passed. Browser checks at 320, 390, 430, and 1280px found no horizontal overflow. Verified basket drag dismissal, scrollable long inventory, recipe switching/transcription, planting then harvesting chard, and inventory increment. No garden console errors observed. Browser had reduced motion enabled, so animated motion timing itself still needs a normal-motion visual review; physical iPhone touch was not tested.
