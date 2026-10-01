@@ -55,3 +55,6 @@ Made ingredient wells translucent, aligned their contents, and normalized the fi
 
 ### Mobile pocket controls below recipes
 Moved the mobile campfire/basket/journal/compass row below Morning, Afternoon 1 and Afternoon 2; reading links remain below both. Reviewed phone layout and saved garden-recipes-above-controls.png. Desktop unchanged.
+
+### Soft mobile garden background
+Removed the horizontal rule, the inset landscape layers and vignette, and the ingredient tray's rectangular background on phones. The existing full-page cream-to-sage gradient and subtle grain now continue uninterrupted behind the controls. Desktop layout and landscape remain unchanged. Reviewed at 320×740, 390×844, 430×900 and desktop; production build passed. Local/Git before-and-after screenshots: garden-mobile-background-before.png and garden-mobile-background-after.png. These new images have not been synced to Drive or Sheets.

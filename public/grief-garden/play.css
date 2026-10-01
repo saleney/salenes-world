@@ -365,3 +365,9 @@ body{background-color:#f4efe4;background-image:url("data:image/svg+xml,%3Csvg xm
  .recipe-picker{bottom:120px}
  .garden-pocket-controls{bottom:54px}
 }
+
+/* Let the page's gradual cream-to-sage wash continue behind mobile controls. */
+@media(max-width:600px){
+ .garden::after,.garden-window::after,.landscape-depth{display:none}
+ .seed-packets{background:transparent}
+}
