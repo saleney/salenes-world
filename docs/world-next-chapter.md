@@ -88,3 +88,12 @@ Still outstanding:
 4. **Post Office scope.** Current care packages were approved; postcard-making is an optional future idea, not an unfinished requirement.
 
 Recommended next design task: preview the seven-place map before inventing more destinations. Mount Maybe can remain a future trail within the Observatory.
+
+
+## Seven-place release — October 1, 2026
+
+The seven-place composition was approved and prepared for deployment. It preserves legacy room URLs and journal storage keys. The approved Friendship Arcade token/Catch game is now included. The Visitor Center scroll lives at the map’s lower-left edge; the trail forms a continuous loop.
+
+Next substantive work: review the travel journal’s actual draft-keeping behavior and decide whether any extra saved-entry types are useful. Preserve existing autosaved drafts. Postcard-making and Mount Maybe remain optional later experiments.
+
+Release QA and screenshots: world-seven-release-2026-10-01/README.md.

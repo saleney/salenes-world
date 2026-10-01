@@ -26,3 +26,5 @@
 .objects{gap:35px 80px}.specimen-1{padding-top:30px}.specimen-2{padding-top:15px}.specimen-3{padding-top:45px}@media(max-width:650px){.objects{gap:45px}.specimen-1,.specimen-2,.specimen-3{padding-top:0}}
 
 .nest-eggs{transform-box:fill-box;transform-origin:center bottom}.object:hover .nest-eggs,.object:focus-visible .nest-eggs{animation:egg-wiggle 1.8s ease-in-out infinite}@keyframes egg-wiggle{0%,100%{transform:rotate(0) translateY(0)}30%{transform:rotate(-4deg) translateY(-1px)}65%{transform:rotate(3deg) translateY(0)}}
+
+@media(max-width:650px){.conservatory-page #pocket-notebook{position:relative;right:auto;bottom:auto;width:fit-content;margin:0 12px 18px auto}}

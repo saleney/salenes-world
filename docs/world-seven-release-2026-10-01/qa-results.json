@@ -1,0 +1,230 @@
+{
+  "desktop": [
+    {
+      "room": "word-woods",
+      "desktop": {
+        "brokenImages": 0,
+        "overflow": false,
+        "width": 1280
+      },
+      "errors": []
+    },
+    {
+      "room": "grief-garden",
+      "desktop": {
+        "brokenImages": 0,
+        "overflow": false,
+        "width": 1280
+      },
+      "errors": []
+    },
+    {
+      "room": "post-office",
+      "desktop": {
+        "brokenImages": 0,
+        "overflow": false,
+        "width": 1280
+      },
+      "errors": []
+    },
+    {
+      "room": "hall-of-scribbles",
+      "desktop": {
+        "brokenImages": 0,
+        "overflow": false,
+        "width": 1280
+      },
+      "errors": []
+    },
+    {
+      "room": "courage-observatory",
+      "desktop": {
+        "brokenImages": 0,
+        "overflow": false,
+        "width": 1280
+      },
+      "errors": []
+    },
+    {
+      "room": "friendship-arcade",
+      "desktop": {
+        "brokenImages": 0,
+        "overflow": false,
+        "width": 1280
+      },
+      "errors": []
+    },
+    {
+      "room": "conservatory",
+      "desktop": {
+        "brokenImages": 0,
+        "overflow": false,
+        "width": 1280
+      },
+      "errors": []
+    },
+    {
+      "room": "atlas",
+      "desktop": {
+        "brokenImages": 0,
+        "overflow": false,
+        "width": 1280
+      },
+      "errors": []
+    }
+  ],
+  "mobile": [
+    {
+      "room": "word-woods",
+      "requestedWidth": 320,
+      "overflow": false,
+      "width": 320
+    },
+    {
+      "room": "grief-garden",
+      "requestedWidth": 320,
+      "overflow": false,
+      "width": 320
+    },
+    {
+      "room": "post-office",
+      "requestedWidth": 320,
+      "overflow": false,
+      "width": 320
+    },
+    {
+      "room": "hall-of-scribbles",
+      "requestedWidth": 320,
+      "overflow": false,
+      "width": 320
+    },
+    {
+      "room": "courage-observatory",
+      "requestedWidth": 320,
+      "overflow": false,
+      "width": 320
+    },
+    {
+      "room": "friendship-arcade",
+      "requestedWidth": 320,
+      "overflow": false,
+      "width": 320
+    },
+    {
+      "room": "conservatory",
+      "requestedWidth": 320,
+      "overflow": false,
+      "width": 320
+    },
+    {
+      "room": "word-woods",
+      "requestedWidth": 390,
+      "overflow": false,
+      "width": 390
+    },
+    {
+      "room": "word-woods",
+      "requestedWidth": 390,
+      "overflow": false,
+      "width": 390
+    },
+    {
+      "room": "grief-garden",
+      "requestedWidth": 390,
+      "overflow": false,
+      "width": 390
+    },
+    {
+      "room": "post-office",
+      "requestedWidth": 390,
+      "overflow": false,
+      "width": 390
+    },
+    {
+      "room": "hall-of-scribbles",
+      "requestedWidth": 390,
+      "overflow": false,
+      "width": 390
+    },
+    {
+      "room": "courage-observatory",
+      "requestedWidth": 390,
+      "overflow": false,
+      "width": 390
+    },
+    {
+      "room": "friendship-arcade",
+      "requestedWidth": 390,
+      "overflow": false,
+      "width": 390
+    },
+    {
+      "room": "conservatory",
+      "requestedWidth": 390,
+      "overflow": false,
+      "width": 390
+    },
+    {
+      "room": "word-woods",
+      "requestedWidth": 430,
+      "overflow": false,
+      "width": 430
+    },
+    {
+      "room": "grief-garden",
+      "requestedWidth": 430,
+      "overflow": false,
+      "width": 430
+    },
+    {
+      "room": "post-office",
+      "requestedWidth": 430,
+      "overflow": false,
+      "width": 430
+    },
+    {
+      "room": "hall-of-scribbles",
+      "requestedWidth": 430,
+      "overflow": false,
+      "width": 430
+    },
+    {
+      "room": "courage-observatory",
+      "requestedWidth": 430,
+      "overflow": false,
+      "width": 430
+    },
+    {
+      "room": "friendship-arcade",
+      "requestedWidth": 430,
+      "overflow": false,
+      "width": 430
+    },
+    {
+      "room": "conservatory",
+      "requestedWidth": 430,
+      "overflow": false,
+      "width": 430
+    }
+  ],
+  "atlasMobile": [
+    {
+      "room": "atlas",
+      "requestedWidth": 320,
+      "overflow": false,
+      "width": 320
+    },
+    {
+      "room": "atlas",
+      "requestedWidth": 390,
+      "overflow": false,
+      "width": 390
+    },
+    {
+      "room": "atlas",
+      "requestedWidth": 430,
+      "overflow": false,
+      "width": 430
+    }
+  ]
+}
