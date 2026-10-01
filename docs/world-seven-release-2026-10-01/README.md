@@ -33,3 +33,6 @@ The next-chapter proposal is updated to reflect the seven-place map and Arcade r
 - Centered the artist palette vertically against the paper; removed the initial drawing instruction.
 - Removed No reply needed from the Post Office.
 - Verified local journal and palette; production build passed.
+
+### Consistent room navigation
+All travel journal buttons now sit at top right, including mobile. Arcade and Observatory reuse the World compass. Compasses turn gently on hover/focus and return afterward; reduced-motion preference disables the turn. Arcade and Observatory navigation reviewed locally; build passed.

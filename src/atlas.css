@@ -23,3 +23,5 @@ header{padding-bottom:28px}footer{align-items:center}footer #visitor-note{positi
 header p{max-width:none;width:fit-content}@media(min-width:651px){header p{white-space:nowrap}}@media(max-width:650px){header p{max-width:calc(100vw - 44px);font-size:18px}}
 
 .playground-back{display:inline-block;color:inherit;font:italic 14px Georgia,serif;text-underline-offset:4px;margin-bottom:8px}
+
+.compass svg{transition:transform .6s ease}.compass:hover svg{transform:rotate(14deg)}@media(prefers-reduced-motion:reduce){.compass svg{transition:none}.compass:hover svg{transform:none}}

@@ -2,7 +2,7 @@ const discoveryKey='salene-world-discoveries-v1';
 const read=(key,fallback)=>{try{return JSON.parse(localStorage.getItem(key))||fallback}catch{return fallback}};
 window.mountNotebook = function({places=[],current=null,base='/',onWord=null,onDraft=null}={}){
  if(document.querySelector('#pocket-notebook'))return;
- const back=document.querySelector('#back');if(back){back.setAttribute('aria-label','Back to Salene’s World');back.title='Back to Salene’s World';back.innerHTML='<svg class="world-return-compass" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="44" fill="none" stroke="currentColor" stroke-width="1.3"/><text x="50" y="7" text-anchor="middle" font-size="9" fill="currentColor">N</text><path fill="#b9755c" d="m50 9 8 41-8 42-7-42Z"/><path fill="#534a3b" d="m10 50 40-7 42 7-42 8Z"/></svg>';}
+ const back=document.querySelector('#back, header a');if(back){back.classList.add('world-return');back.setAttribute('aria-label','Back to Salene’s World');back.title='Back to Salene’s World';back.innerHTML='<svg class="world-return-compass" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="44" fill="none" stroke="currentColor" stroke-width="1.3"/><text x="50" y="7" text-anchor="middle" font-size="9" fill="currentColor">N</text><path fill="#b9755c" d="m50 9 8 41-8 42-7-42Z"/><path fill="#534a3b" d="m10 50 40-7 42 7-42 8Z"/></svg>';}
 
  const css=document.createElement('link');css.rel='stylesheet';css.href=base+'travel-notebook.css';document.head.append(css);
  let discoveries=read(discoveryKey,[]);if(!Array.isArray(discoveries))discoveries=[];discoveries=discoveries.filter(p=>p&&typeof p.id==='string'&&typeof p.title==='string');
