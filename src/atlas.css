@@ -25,3 +25,20 @@ header p{max-width:none;width:fit-content}@media(min-width:651px){header p{white
 .playground-back{display:inline-block;color:inherit;font:italic 14px Georgia,serif;text-underline-offset:4px;margin-bottom:8px}
 
 .compass svg{transition:transform .6s ease}.compass:hover svg{transform:rotate(14deg)}@media(prefers-reduced-motion:reduce){.compass svg{transition:none}.compass:hover svg{transform:none}}
+
+/* Three desktop pocket objects: Playground, Salene's note, travel journal. */
+.playground-back svg{display:none}
+@media(min-width:651px){
+ .atlas-page header{padding-right:260px}
+ .atlas-page header p{white-space:normal;text-wrap:balance}
+ .atlas-page .playground-back,.atlas-page footer #visitor-note,.atlas-page #pocket-notebook{position:absolute!important;top:28px!important;bottom:auto!important;left:auto!important;margin:0!important;padding:0!important;width:52px;height:52px;min-width:52px;min-height:52px;display:flex;align-items:center;justify-content:center;gap:0;transform:none!important;z-index:5}
+ .atlas-page .playground-back{right:160px}
+ .atlas-page footer #visitor-note{right:96px}
+ .atlas-page #pocket-notebook{right:32px!important}
+ .atlas-page .playground-back span,.atlas-page #visitor-note span,.atlas-page #pocket-notebook span{display:none}
+ .atlas-page .playground-back svg,.atlas-page footer #visitor-note svg{display:block;flex:none;width:60px;height:60px;fill:#efe3cb;stroke:#88755d;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+ .atlas-page #pocket-notebook svg{flex:none;width:42px;height:52px}
+ .atlas-page footer .compass{display:none}
+ .atlas-page footer{justify-content:center}
+ .atlas-page .playground-back:focus-visible{outline:1px dashed #95664f;outline-offset:3px}
+}
