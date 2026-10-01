@@ -3,3 +3,26 @@
 /* Reserve discovery space so opening notes never resizes the greenhouse. */
 .specimen{height:440px}.frame{opacity:.25}.object svg{stroke:#70654f;stroke-width:1.9}.water{fill:#9dbcc04d}.leaf{fill:#91a57866}.prism{fill:#d3bb9155}.discovery{height:235px;overflow:auto}.specimen-1{padding-top:30px}.bubble{stroke:#8ba9b0;stroke-width:1.5}
 @media(max-width:650px){.specimen{height:410px}.specimen-1{padding-top:0}.frame{opacity:.18}.discovery{height:230px;overflow:auto}}
+
+.body-cabinet{position:relative;margin:-30px auto 0;max-width:360px;text-align:center;min-height:320px}.drawer{background:none;border:0;color:inherit;cursor:pointer;padding:0;min-width:220px}.drawer svg{width:190px;display:block;margin:auto;stroke:#82715a;stroke-width:1.7;stroke-linejoin:round;fill:none;transition:transform .5s}.drawer span{font:italic 21px Georgia,serif}.body-cabinet.open .drawer svg{transform:translateY(12px)}#body-discovery{padding:15px 20px 20px;background:#fcf8eb;transform:rotate(1deg);border:1px solid #b3a68c66;margin:20px auto;animation:unfold .5s ease;transform-origin:top}.heart-study{width:180px;fill:none;stroke:#a57465;stroke-width:1.5}.beating-heart{fill:#bf887b33;transform-origin:120px 95px;animation:heartbeat 1.6s ease infinite}.pulse{stroke:#839575;stroke-dasharray:300;animation:trace 4s linear infinite}#body-discovery p{font:italic 18px/1.5 Georgia,serif;margin:0 0 12px}.drawer:focus-visible{outline:2px solid #9b7455;outline-offset:6px}@keyframes heartbeat{0%,40%,100%{transform:scale(1)}15%,28%{transform:scale(1.07)}}@keyframes trace{to{stroke-dashoffset:-600}}@media(max-width:650px){.body-cabinet{margin-top:0}}@media(prefers-reduced-motion:reduce){.beating-heart,.pulse{animation:none}}
+
+/* Discoveries open over the room rather than stretching it. */
+.specimen{height:auto}.body-cabinet{min-height:140px;margin:65px auto 0}
+.discovery-window{color:inherit;background:#fcf8eb;border:1px solid #b3a68c88;width:min(440px,calc(100vw - 36px));max-height:calc(100dvh - 40px);padding:52px 28px 30px;box-shadow:0 18px 70px #584f4026;overflow:auto;animation:paper-open .35s ease}
+.discovery-window::backdrop{background:#584f402d;backdrop-filter:blur(2px)}
+.dismiss{position:absolute;top:8px;right:8px;width:44px;height:44px;padding:0;background:none;border:0;font:30px Georgia,serif;color:inherit;cursor:pointer}
+.discovery-window .discovery,.discovery-window #body-discovery{height:auto;overflow:visible;border:0;background:none;margin:0;padding:0;transform:none;animation:none;text-align:center}
+.discovery-window .discovery p{font-size:25px;line-height:1.45}
+.discovery-window .discovery .note{font-size:16px;margin-top:20px}
+.discovery-window .heart-study{display:block;margin:0 auto 14px}
+@keyframes paper-open{from{opacity:0;transform:translateY(12px) rotate(-2deg) scale(.96)}to{opacity:1;transform:none}}
+@media(max-width:650px){.body-cabinet{margin-top:35px}.discovery-window{padding:52px 22px 26px}.discovery-window .discovery p{font-size:23px}}
+
+.discovery-window[data-kind="leaf"]{background:#eef0df;border-radius:35% 4% 28% 3%;padding:64px 36px 42px;transform-origin:bottom center;animation:leaf-open .6s ease}.discovery-window[data-kind="water"]{background:#eff3ee}.discovery-window[data-kind="body"]{background:#f7ecdf}@keyframes leaf-open{0%{opacity:0;transform:rotate(-14deg) scale(.55)}65%{transform:rotate(3deg) scale(1.02)}100%{opacity:1;transform:none}}
+
+.objects{grid-template-columns:repeat(2,minmax(0,1fr));gap:100px;max-width:620px;margin:auto}.specimen-1{padding-top:65px}.nest-bowl{fill:#d6c3a366}.nest-eggs{fill:#f8f4e9}.discovery-window[data-kind="nest"]{background:#f7efdf;border-radius:8% 3% 10% 4%;transform-origin:bottom;animation:leaf-open .6s ease}.greenhouse{padding-bottom:120px}
+@media(max-width:650px){.objects{grid-template-columns:1fr;gap:55px;max-width:240px}.specimen-1{padding-top:0}.greenhouse{padding-bottom:65px}}
+
+.objects{gap:35px 80px}.specimen-1{padding-top:30px}.specimen-2{padding-top:15px}.specimen-3{padding-top:45px}@media(max-width:650px){.objects{gap:45px}.specimen-1,.specimen-2,.specimen-3{padding-top:0}}
+
+.nest-eggs{transform-box:fill-box;transform-origin:center bottom}.object:hover .nest-eggs,.object:focus-visible .nest-eggs{animation:egg-wiggle 1.8s ease-in-out infinite}@keyframes egg-wiggle{0%,100%{transform:rotate(0) translateY(0)}30%{transform:rotate(-4deg) translateY(-1px)}65%{transform:rotate(3deg) translateY(0)}}
