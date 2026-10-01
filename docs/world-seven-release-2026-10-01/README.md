@@ -61,3 +61,5 @@ Removed the horizontal rule, the inset landscape layers and vignette, and the in
 
 ### Desktop icons at upper right
 Grouped campfire, harvest basket, travel journal and world compass into one upper-right desktop row. Removed their visible captions while preserving accessible names and existing interactions. Reserved title space to prevent overlap at narrower desktop widths. Phone positioning unchanged. Verified campfire open/toggle, basket open/close, journal open/close and compass navigation; reviewed 1280px and 800px desktop plus 320/390/430px phones. Production build passed. Before-and-after screenshots saved locally and in Git: garden-desktop-controls-before.png and garden-desktop-controls-after.png. Not yet synced to Drive or Sheets.
+
+Desktop icon follow-up: reduced fire and basket slightly and enlarged the journal to compensate for whitespace inside its SVG. All four retain equal 52px click areas, a shared center line and 12px gaps. Reviewed desktop and 320/390/430px phones; mobile rules unchanged. Screenshot: garden-desktop-icons-aligned.png (local/Git; not yet synced to Drive/Sheets).
