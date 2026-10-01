@@ -9,3 +9,5 @@ Verification: notebook opening and close/focus on map; Richard’s garden entry 
 Final placement: notebook replaces the atlas work-in-progress stamp at top right. Place names are the links, without a second return action. About this garden sits above Handwritten recipes. Mobile garden notebook moved above the scene to avoid covering recipe choices. Phone QA screenshots: output/world-atlas/notebook-phone-qa.png, garden-notebook-phone-qa.png, phone-final-placement.png. Browser emulation had timed out; iframe responsive layout verification completed instead.
 
 Follow-up: Grief Garden journal moved to the top right on desktop and mobile; mobile title reserves space for its cover.
+
+Garden follow-up: initial planted ingredients reduced from 24 to 3, leaving space for visitor planting; harvesting and recipe trays retained.

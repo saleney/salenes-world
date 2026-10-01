@@ -121,7 +121,8 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')for(const panel of d
 $('.read-recipes').addEventListener('click',openRecipes);
 const meadow=document.createElement('div');meadow.className='meadow';meadow.setAttribute('aria-label','Garden ingredients to harvest');garden.prepend(meadow);
 const kinds=Object.keys(produce);
-for(let i=0;i<24;i++){const plant=document.createElement('button');plant.className='meadow-plant';plant.dataset.kind=kinds[i%kinds.length];plant.setAttribute('aria-label','Harvest '+plant.dataset.kind.toLowerCase());plant.addEventListener('click',()=>pick(plant));plant.innerHTML=produce[plant.dataset.kind];plant.style.left=(3+(i*37%89))+'%';plant.style.top=(24+(i*19%40))+'%';plant.style.height=(100+(i*23%105))+'px';plant.style.setProperty('--sway-time',(5+i%5)+'s');plant.style.setProperty('--sway-phase',(-i*.6)+'s');setPlantVariation(plant,'meadow-'+i);meadow.append(plant);}
+// Start with a few seedlings; visitors fill the garden by planting.
+for(let i=0;i<3;i++){const plant=document.createElement('button');plant.className='meadow-plant';plant.dataset.kind=kinds[i%kinds.length];plant.setAttribute('aria-label','Harvest '+plant.dataset.kind.toLowerCase());plant.addEventListener('click',()=>pick(plant));plant.innerHTML=produce[plant.dataset.kind];plant.style.left=(3+(i*37%89))+'%';plant.style.top=(24+(i*19%40))+'%';plant.style.height=(100+(i*23%105))+'px';plant.style.setProperty('--sway-time',(5+i%5)+'s');plant.style.setProperty('--sway-phase',(-i*.6)+'s');setPlantVariation(plant,'meadow-'+i);meadow.append(plant);}
 
 // Stable variation prevents the breeze from changing whenever growth rerenders.
 function setPlantVariation(element,id){
