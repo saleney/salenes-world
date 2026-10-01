@@ -284,3 +284,4 @@ body{background-color:#f4efe4;background-image:url("data:image/svg+xml,%3Csvg xm
 .meadow-plant:disabled .plant-tip{pointer-events:none}
 /* Keep swaying edge plants inside the phone scene, without widening the page. */
 .garden-window{overflow:clip}
+.garden-reading{position:absolute;left:24px;bottom:100px;z-index:12;display:flex;align-items:flex-start;flex-direction:column;gap:4px}.garden-reading .about-garden,.garden-reading .read-recipes{position:static;font:11px Georgia,serif;letter-spacing:normal;text-transform:none;min-height:22px;padding:0;text-decoration:underline}@media(max-width:600px){.garden-reading{left:16px;bottom:85px}}
