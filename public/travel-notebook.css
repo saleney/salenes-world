@@ -4,3 +4,5 @@
 
 .garden-page #pocket-notebook{position:absolute;top:18px;right:24px;bottom:auto;background:none}
 @media(max-width:600px){.garden-page .intro h1{padding-right:94px;font-size:32px;line-height:1.15}.garden-page header{top:125px}.garden-page #pocket-notebook{position:absolute;top:18px;right:12px;bottom:auto;flex-direction:column;gap:0;font-size:12px;max-width:90px;text-align:center;background:none}.garden-page #pocket-notebook svg{height:36px;width:29px}}
+
+.world-return-compass{display:block;width:44px;height:44px}#back:has(.world-return-compass){display:inline-block;line-height:0}

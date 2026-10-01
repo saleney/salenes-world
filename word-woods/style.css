@@ -2,3 +2,5 @@
 #woods-toy .woods-tile,#woods-toy .woods-tile:nth-child(2),#woods-toy .woods-tile:nth-child(3),#woods-toy .placed-tile{border-bottom-color:#44695d}
 
 main{padding-bottom:110px}
+
+#pocket-notebook{top:14px;right:24px;bottom:auto;position:absolute} @media(max-width:600px){#pocket-notebook{top:8px;right:10px;font-size:13px}#pocket-notebook svg{width:30px;height:38px}}

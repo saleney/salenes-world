@@ -21,3 +21,5 @@ header{padding-bottom:28px}footer{align-items:center}footer #visitor-note{positi
 @media(max-width:650px){header{padding-bottom:22px}main{margin-top:24px}footer{flex-wrap:wrap}footer #visitor-note{font-size:16px}footer>span{margin-left:auto}footer .compass{margin-left:auto}}
 
 header p{max-width:none;width:fit-content}@media(min-width:651px){header p{white-space:nowrap}}@media(max-width:650px){header p{max-width:calc(100vw - 44px);font-size:18px}}
+
+.playground-back{display:inline-block;color:inherit;font:italic 14px Georgia,serif;text-underline-offset:4px;margin-bottom:8px}

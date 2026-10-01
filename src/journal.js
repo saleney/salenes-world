@@ -28,7 +28,8 @@ export function createJournal({ openWord, openDraft }) {
       const li = document.createElement('li')
       const title = document.createElement('h3'); title.textContent = entry.title
       const text = document.createElement('p'); text.textContent = entry.text
-      li.append(title, text, button(entry.type === 'word' ? 'Revisit word' : 'Continue draft', () => entry.type === 'word' ? openWord(entry.index) : openDraft(entry.title)))
+      li.append(title, text)
+      if (entry.type === 'draft') li.append(button('Continue draft', () => openDraft(entry.title)))
       if (entry.type === 'word') li.append(button('Remove word', () => {
         entries = entries.filter(item => item.index !== entry.index)
         persist(); render(); document.querySelector('#journal-title').focus()

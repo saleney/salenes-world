@@ -11,3 +11,5 @@
 .implements{flex-wrap:nowrap;width:132px;justify-self:center;gap:0}.implement{width:44px;min-width:44px;min-height:44px}.tools{width:156px;grid-template-columns:repeat(2,52px)}.workdesk{padding-left:174px}@media(max-width:650px){.workdesk{padding-left:0}.tools{width:100%;max-width:300px}.implements{width:100%;gap:15px}}
 .tools{top:39px}@media(max-width:650px){.tools{top:auto}}
 .pencils{justify-self:center;justify-content:center}
+
+@media(min-width:651px){.tools{top:50%;transform:translateY(-50%) rotate(-2deg)}}

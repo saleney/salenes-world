@@ -24,3 +24,12 @@ Mobile QA fixes: separated the Garden’s recipe cards from the campfire and bas
 This is focused functional and responsive QA, not an exhaustive accessibility or cross-browser certification. Sound playback, long drawing gestures, and download export were not re-tested. The journal still keeps data only in the current browser. Its explicit draft-keeping behavior remains a future review.
 
 The next-chapter proposal is updated to reflect the seven-place map and Arcade release. Optional postcard-making and Mount Maybe are future ideas, not prerequisites for this release.
+
+## Final navigation polish
+- Added a return to Salene’s Playground on the map.
+- Reused the map compass for room return links, retaining accessible labels.
+- Moved Word Woods journal to the top right.
+- Removed Revisit word and the journal’s extra margin sentence.
+- Centered the artist palette vertically against the paper; removed the initial drawing instruction.
+- Removed No reply needed from the Post Office.
+- Verified local journal and palette; production build passed.
