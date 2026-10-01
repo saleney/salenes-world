@@ -16,6 +16,17 @@ grief:'<path d="M40 63V29M40 47q-18-2-20-15 18-2 20 15M40 40q17-2 18-14-17-2-18 
 ideas:'<path d="m9 62 28-50 32 49ZM27 30l11 7 9-8"/>',
 courage:'<path d="M16 53v-15q23-38 47 0v15ZM39 24v-9M33 16h13M17 58h46"/><circle fill="#cba55f" stroke="none" cx="39" cy="24" r="4"/>'};
 const map=document.querySelector('.map');
-for(const d of destinations){const b=document.createElement('a');b.className='place';b.style.left='clamp(52px, '+positions[d.id][0]+'%, calc(100% - 52px))';b.style.top=positions[d.id][1]+'%';b.innerHTML=`<svg viewBox="0 0 80 80" aria-hidden="true">${drawings[d.id]}</svg><span>${d.title}</span><em>${d.tag||d.kicker.toLowerCase()}</em>`;b.setAttribute('aria-label',d.title);b.href=d.href?new URL(d.href+'index.html',new URL(import.meta.env.BASE_URL,location.origin)).href:'./room.html?place='+d.id;document.querySelector('#places').append(b);}
+for(const d of destinations){const b=document.createElement('a');b.className='place';b.style.left='clamp(52px, '+positions[d.id][0]+'%, calc(100% - 52px))';b.style.top=positions[d.id][1]+'%';b.innerHTML=`<svg viewBox="0 0 80 80" aria-hidden="true">${drawings[d.id]}</svg><span>${d.title}</span><em>${d.tag||d.kicker.toLowerCase()}</em>`;b.setAttribute('aria-label',d.title);b.href=d.href?new URL(d.href+'index.html',new URL(import.meta.env.BASE_URL,location.origin)).href:'./room.html?place='+d.id;if(d.id==='visitor'){b.addEventListener('click',e=>{e.preventDefault();openVisitor(b)})}document.querySelector('#places').append(b);}
 let drag=null,x=0,y=0;map.onpointerdown=e=>{if(e.target.closest('button,a,aside'))return;drag={sx:e.clientX,sy:e.clientY,x,y};map.setPointerCapture(e.pointerId)};map.onpointermove=e=>{if(drag){x=Math.max(-60,Math.min(60,drag.x+e.clientX-drag.sx));y=Math.max(-40,Math.min(40,drag.y+e.clientY-drag.sy));map.style.setProperty('--x',x+'px');map.style.setProperty('--y',y+'px')}else if(matchMedia('(prefers-reduced-motion: no-preference)').matches){map.style.setProperty('--hill',(e.clientX/innerWidth-.5)*10+'px')}};map.onpointerup=()=>drag=null;document.querySelector('#reset').onclick=()=>{x=y=0;map.style.setProperty('--x','0px');map.style.setProperty('--y','0px')};
 const notebookScript=document.createElement('script');notebookScript.src=import.meta.env.BASE_URL+'travel-notebook.js';notebookScript.onload=()=>window.mountNotebook({base:import.meta.env.BASE_URL,places:destinations.map(p=>({...p,href:p.href?import.meta.env.BASE_URL+p.href:undefined}))});document.head.append(notebookScript);
+
+const visitorScroll=document.createElement('dialog');visitorScroll.className='visitor-scroll';visitorScroll.setAttribute('aria-labelledby','visitor-scroll-title');
+const closeScroll=document.createElement('button');closeScroll.className='scroll-close';closeScroll.textContent='×';closeScroll.setAttribute('aria-label','Close Visitor Center');
+const scrollTitle=document.createElement('h2');scrollTitle.id='visitor-scroll-title';scrollTitle.textContent=destinations.find(p=>p.id==='visitor').title;
+visitorScroll.append(closeScroll,scrollTitle);
+for(const text of destinations.find(p=>p.id==='visitor').scrollNote){const p=document.createElement('p');p.textContent=text;visitorScroll.append(p)}
+document.body.append(visitorScroll);
+let scrollTrigger;
+function openVisitor(trigger){scrollTrigger=trigger;visitorScroll.classList.remove('closing');visitorScroll.showModal();closeScroll.focus()}
+function closeVisitor(){if(visitorScroll.classList.contains('closing'))return;visitorScroll.classList.add('closing');setTimeout(()=>{visitorScroll.close();scrollTrigger?.focus()},matchMedia('(prefers-reduced-motion: reduce)').matches?0:280)}
+closeScroll.addEventListener('click',closeVisitor);visitorScroll.addEventListener('cancel',e=>{e.preventDefault();closeVisitor()});
