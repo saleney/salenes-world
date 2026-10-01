@@ -58,3 +58,6 @@ Moved the mobile campfire/basket/journal/compass row below Morning, Afternoon 1 
 
 ### Soft mobile garden background
 Removed the horizontal rule, the inset landscape layers and vignette, and the ingredient tray's rectangular background on phones. The existing full-page cream-to-sage gradient and subtle grain now continue uninterrupted behind the controls. Desktop layout and landscape remain unchanged. Reviewed at 320×740, 390×844, 430×900 and desktop; production build passed. Local/Git before-and-after screenshots: garden-mobile-background-before.png and garden-mobile-background-after.png. These new images have not been synced to Drive or Sheets.
+
+### Desktop icons at upper right
+Grouped campfire, harvest basket, travel journal and world compass into one upper-right desktop row. Removed their visible captions while preserving accessible names and existing interactions. Reserved title space to prevent overlap at narrower desktop widths. Phone positioning unchanged. Verified campfire open/toggle, basket open/close, journal open/close and compass navigation; reviewed 1280px and 800px desktop plus 320/390/430px phones. Production build passed. Before-and-after screenshots saved locally and in Git: garden-desktop-controls-before.png and garden-desktop-controls-after.png. Not yet synced to Drive or Sheets.
