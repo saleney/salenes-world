@@ -11,7 +11,7 @@ export const woodlandWords = [
   { hanzi: '水', pinyin: 'shuǐ', meaning: 'water', effect: 'water', duration: 4500, scene: 'Water gathers in a small rippling pool.' },
   { hanzi: '火', pinyin: 'huǒ', meaning: 'fire', effect: 'fire', duration: 4000, scene: 'A small fire flickers inside a stone ring.' },
 ]
-export function createWordWoods(root, keep) {
+export function createWordWoods(root, keep, { directMeaning = false } = {}) {
   root.innerHTML = `<div class="woods-top"><p>Drag a tile into the clearing, or tap it.</p><button type="button" id="woods-sound" aria-pressed="false">Sound off</button></div>
   <div class="woods-clearing" aria-label="Woodland clearing: place a tile here">
   <svg class="woods-art" viewBox="0 0 720 440" aria-hidden="true">
@@ -55,27 +55,27 @@ export function createWordWoods(root, keep) {
   function face() {
     const word=woodlandWords[selected]
     placed.querySelector('span').textContent=word.hanzi
-    placed.querySelector('small').textContent=flipped ? `${word.pinyin} · ${word.meaning}` : ''
+    placed.querySelector('small').textContent=!directMeaning && flipped ? `${word.pinyin} · ${word.meaning}` : ''
     placed.classList.toggle('is-back',flipped)
     placed.setAttribute('aria-pressed',String(flipped))
-    placed.setAttribute('aria-label', `${word.hanzi}: ${flipped ? word.pinyin + ', ' + word.meaning + '. Show character side' : 'Turn over for meaning and pronunciation'}`)
-    keepButton.hidden=!flipped
+    placed.setAttribute('aria-label', directMeaning ? `${word.hanzi} · ${word.pinyin} · ${word.meaning}. Play again` : `${word.hanzi}: ${flipped ? word.pinyin + ', ' + word.meaning + '. Show character side' : 'Turn over for meaning and pronunciation'}`)
+    keepButton.hidden=directMeaning || !flipped
   }
   function play() {
     clearTimeout(timer); const word=woodlandWords[selected]
     scene.dataset.effect=''; void scene.offsetWidth; scene.dataset.effect=word.effect
-    status.textContent=word.scene;clack()
-    timer=setTimeout(()=>{scene.dataset.effect=''; status.textContent='The clearing is quiet again.'},word.duration)
+    status.textContent=directMeaning ? `${word.pinyin} · ${word.meaning}` : word.scene;clack()
+    timer=setTimeout(()=>{scene.dataset.effect=''; if(!directMeaning)status.textContent='The clearing is quiet again.'},word.duration)
   }
   function place(index) {
     window.speechSynthesis?.cancel()
     selected=index;flipped=false;placed.hidden=false;controls.hidden=false;audioStatus.textContent=''
     tiles.forEach((tile,i)=>{tile.setAttribute('aria-pressed',String(i===index));tile.setAttribute('aria-label',`${i===index?'Return':'Place'} ${woodlandWords[i].hanzi}`)})
-    face();play()
+    face();play();if(directMeaning)pronounce()
   }
   function reset() {
     clearTimeout(timer);scene.dataset.effect='';placed.hidden=true;controls.hidden=true;window.speechSynthesis?.cancel()
-    const previous=selected;selected=null;tiles.forEach((t,i)=>{t.setAttribute('aria-pressed','false');t.setAttribute('aria-label',`Place ${woodlandWords[i].hanzi}`)});status.textContent='Tile returned.';audioStatus.textContent='';if(previous!==null)tiles[previous].focus()
+    const previous=selected;selected=null;tiles.forEach((t,i)=>{t.setAttribute('aria-pressed','false');t.setAttribute('aria-label',`Place ${woodlandWords[i].hanzi}`)});status.textContent=directMeaning?'':'Tile returned.';audioStatus.textContent='';if(previous!==null)tiles[previous].focus()
   }
   sound.addEventListener('click',()=>{soundOn=!soundOn;sound.textContent=soundOn?'Sound on':'Sound off';sound.setAttribute('aria-pressed',String(soundOn));if(!soundOn)window.speechSynthesis?.cancel()})
   tiles.forEach((tile,i)=>{
@@ -98,6 +98,7 @@ export function createWordWoods(root, keep) {
   }
   placed.addEventListener('click',()=>{
     if(selected===null)return
+    if(directMeaning){play();pronounce();return}
     flipped=!flipped;face()
     if(flipped)pronounce();else window.speechSynthesis?.cancel()
   })

@@ -10,3 +10,5 @@ The canonical destination name is now The Hall of Scribbles. Travel journal plac
 Validation: production build with GitHub Pages base; desktop composition; 320/390/430px layouts without horizontal overflow; Conservatory reopen cycle; clearing and restoring a test note. Prior local brush mouse-drawing checks passed. No new dependencies or generated artwork.
 
 Local iterations remain under output/conservatory and output/scribbles. These were not published as separate studies.
+
+Deployment confirmed successful: commit 4508811, GitHub Actions run 36831689870. Both public pages opened successfully with working controls and travel journal. Live screenshots saved alongside this document.
