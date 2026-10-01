@@ -17,10 +17,9 @@ mail.forEach((item,i)=>{
  const note=document.createElement('p');note.textContent=item.note;
  const gift=document.createElement('div');gift.className='gift';gift.innerHTML='<svg viewBox="0 0 110 100" aria-hidden="true">'+item.gift+'</svg>';
  const after=document.createElement('p');after.className='gift-note';after.textContent=item.after;
- const close=document.createElement('button');close.className='fold-away';close.textContent='Tuck it back';
  function setOpen(open){parcel.classList.toggle('open',open);letter.hidden=!open;button.setAttribute('aria-expanded',String(open));button.setAttribute('aria-label',(open?'Close ':'Open ')+item.label.toLowerCase())}
- button.addEventListener('click',()=>setOpen(letter.hidden));close.addEventListener('click',()=>{setOpen(false);button.focus()});
+ button.addEventListener('click',()=>setOpen(letter.hidden));
  // Hover lifts the flap; opening the letter remains available on touch and keyboard.
- letter.append(note,gift,after,close);parcel.append(button,letter);table.append(parcel);
+ letter.append(note,gift,after);parcel.append(button,letter);table.append(parcel);
 });
 const script=document.createElement('script');script.src=base+'travel-notebook.js';script.onload=()=>window.mountNotebook({base,current:'post',places:destinations.map(p=>({...p,href:p.href?base+p.href:undefined}))});document.head.append(script);
