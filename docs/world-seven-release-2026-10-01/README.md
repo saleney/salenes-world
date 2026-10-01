@@ -46,3 +46,6 @@ Mobile campfire, basket, journal, and compass share one compact row. Ingredient 
 Dragged ingredients now use garden coordinates and are exempt from collision repositioning. Legacy planted positions remain compatible. Desktop test released at (640,450) and confirmed the new plant anchor at (640,450); mobile released at (200,350) and confirmed matching anchor. Harvest verified. No horizontal overflow at 320,390,430px. Production build passed.
 
 Mobile garden controls are now icons only, beneath the ingredient tray. Opening view displays up to five saved plants plus three starter plants; older saved plants remain in storage. New plants added during a visit remain visible. Screenshot: garden-icons-below-tray.png.
+
+### Garden reading order and planting space
+Centered the recipe buttons above the side-by-side About this garden and Handwritten recipes links. Raised ordinary planting positions and starter plants to clear the lower controls; precise drag placements remain unchanged. Build and syntax checks passed; desktop and phone layouts reviewed. Screenshots: garden-centered-reading.png and garden-centered-reading-mobile.png.

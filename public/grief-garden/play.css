@@ -329,3 +329,13 @@ body{background-color:#f4efe4;background-image:url("data:image/svg+xml,%3Csvg xm
  .garden-reading{bottom:95px}
  .tools{top:110px}
 }
+
+/* Recipes first, with the two reading links centered beneath them. */
+.recipe-picker{left:50%;transform:translateX(-50%);bottom:62px;flex-wrap:nowrap}
+.garden-reading{left:50%;transform:translateX(-50%);bottom:12px;flex-direction:row;align-items:center;justify-content:center;gap:20px;white-space:nowrap}
+.garden-reading .about-garden,.garden-reading .read-recipes{min-height:44px;display:flex;align-items:center}
+@media(max-width:600px){
+ .recipe-picker{bottom:62px}
+ .garden-reading{bottom:10px;gap:18px}
+ .garden-reading .about-garden,.garden-reading .read-recipes{font-size:11px}
+}
