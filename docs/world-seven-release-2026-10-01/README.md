@@ -40,3 +40,7 @@ All travel journal buttons now sit at top right, including mobile. Arcade and Ob
 Travel journal now shows Places and Words only. Removed the legacy written Drafts tab; existing browser storage was preserved. Hall of Scribbles drawings remain explicitly downloadable rather than journal entries.
 
 Reshaped the continuous map trail into an irregular hand-drawn loop with rounded lobes and inward dips. Place positions retained.
+
+## Garden mobile spacing and precise drops
+Mobile campfire, basket, journal, and compass share one compact row. Ingredient labels were removed visually on phones; accessible names remain. Recipe cards stay on one row. Status notices appear near top center and clear after 3.5 seconds.
+Dragged ingredients now use garden coordinates and are exempt from collision repositioning. Legacy planted positions remain compatible. Desktop test released at (640,450) and confirmed the new plant anchor at (640,450); mobile released at (200,350) and confirmed matching anchor. Harvest verified. No horizontal overflow at 320,390,430px. Production build passed.
