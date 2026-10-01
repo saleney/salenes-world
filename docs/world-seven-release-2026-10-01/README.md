@@ -49,3 +49,6 @@ Mobile garden controls are now icons only, beneath the ingredient tray. Opening 
 
 ### Garden reading order and planting space
 Centered the recipe buttons above the side-by-side About this garden and Handwritten recipes links. Raised ordinary planting positions and starter plants to clear the lower controls; precise drag placements remain unchanged. Build and syntax checks passed; desktop and phone layouts reviewed. Screenshots: garden-centered-reading.png and garden-centered-reading-mobile.png.
+
+### Mobile icon alignment
+Made ingredient wells translucent, aligned their contents, and normalized the fire/basket/journal/compass visual sizes and baseline. Lowered the mobile control rows slightly. Desktop rules unchanged. Build passed; 320, 390, and 430px phone layouts reviewed. Saved garden-aligned-mobile-controls.png.

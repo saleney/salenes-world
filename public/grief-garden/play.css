@@ -336,3 +336,19 @@ body{background-color:#f4efe4;background-image:url("data:image/svg+xml,%3Csvg xm
  .garden-reading{left:50%;transform:translateX(-50%);bottom:10px;flex-direction:row;align-items:center;justify-content:center;gap:18px;white-space:nowrap}
  .garden-reading .about-garden,.garden-reading .read-recipes{min-height:44px;display:flex;align-items:center;font-size:11px}
 }
+
+/* Mobile objects share a baseline and quiet, translucent ingredient wells. */
+@media(max-width:600px){
+ .seed-shelf{bottom:190px}
+ .seed-packets{align-items:center;background:#fffaf033;border-radius:0;padding:4px}
+ .packet{display:flex;align-items:center;justify-content:center;height:48px!important;min-height:48px!important;background:#fffaf026;border-color:#a99e8066}
+ .packet[aria-pressed=true]{background:#e9ddc899}
+ .garden-pocket-controls{bottom:120px;align-items:center;height:52px}
+ .garden-pocket-controls .garden-fire,.garden-pocket-controls .basket,.garden-pocket-controls #pocket-notebook,.garden-pocket-controls #back{height:48px!important;width:52px!important;display:flex;align-items:center;justify-content:center;padding:0}
+ .garden-pocket-controls .garden-fire svg{position:static;height:46px;width:44px}
+ .garden-pocket-controls .basket .basket-drawing{inset:0;width:48px;height:46px;margin:auto}
+ .garden-pocket-controls #pocket-notebook svg{height:42px!important;width:34px!important}
+ .garden-pocket-controls .world-return-compass{height:44px;width:44px}
+ .recipe-picker{bottom:54px}
+ .garden-reading{bottom:2px}
+}
