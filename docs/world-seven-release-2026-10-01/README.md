@@ -52,3 +52,6 @@ Centered the recipe buttons above the side-by-side About this garden and Handwri
 
 ### Mobile icon alignment
 Made ingredient wells translucent, aligned their contents, and normalized the fire/basket/journal/compass visual sizes and baseline. Lowered the mobile control rows slightly. Desktop rules unchanged. Build passed; 320, 390, and 430px phone layouts reviewed. Saved garden-aligned-mobile-controls.png.
+
+### Mobile pocket controls below recipes
+Moved the mobile campfire/basket/journal/compass row below Morning, Afternoon 1 and Afternoon 2; reading links remain below both. Reviewed phone layout and saved garden-recipes-above-controls.png. Desktop unchanged.
