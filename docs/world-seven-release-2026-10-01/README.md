@@ -44,3 +44,5 @@ Reshaped the continuous map trail into an irregular hand-drawn loop with rounded
 ## Garden mobile spacing and precise drops
 Mobile campfire, basket, journal, and compass share one compact row. Ingredient labels were removed visually on phones; accessible names remain. Recipe cards stay on one row. Status notices appear near top center and clear after 3.5 seconds.
 Dragged ingredients now use garden coordinates and are exempt from collision repositioning. Legacy planted positions remain compatible. Desktop test released at (640,450) and confirmed the new plant anchor at (640,450); mobile released at (200,350) and confirmed matching anchor. Harvest verified. No horizontal overflow at 320,390,430px. Production build passed.
+
+Mobile garden controls are now icons only, beneath the ingredient tray. Opening view displays up to five saved plants plus three starter plants; older saved plants remain in storage. New plants added during a visit remain visible. Screenshot: garden-icons-below-tray.png.
