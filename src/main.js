@@ -449,7 +449,7 @@ function animate() {
 
 animate()
 
-function openPlace(id) {
+export function openPlace(id) {
   const place = places[id]
   if (!place) return
   rememberPlace(id)
