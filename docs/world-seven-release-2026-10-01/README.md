@@ -38,3 +38,5 @@ The next-chapter proposal is updated to reflect the seven-place map and Arcade r
 All travel journal buttons now sit at top right, including mobile. Arcade and Observatory reuse the World compass. Compasses turn gently on hover/focus and return afterward; reduced-motion preference disables the turn. Arcade and Observatory navigation reviewed locally; build passed.
 
 Travel journal now shows Places and Words only. Removed the legacy written Drafts tab; existing browser storage was preserved. Hall of Scribbles drawings remain explicitly downloadable rather than journal entries.
+
+Reshaped the continuous map trail into an irregular hand-drawn loop with rounded lobes and inward dips. Place positions retained.
