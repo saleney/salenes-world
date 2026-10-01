@@ -1,0 +1,210 @@
+{
+  "desktop": [
+    {
+      "route": "post-office",
+      "icons": [
+        {
+          "centerY": 50,
+          "height": 52,
+          "selector": ".world-return",
+          "width": 52,
+          "x": 1045
+        },
+        {
+          "centerY": 50,
+          "height": 52,
+          "selector": "#pocket-notebook",
+          "width": 52,
+          "x": 1109
+        }
+      ]
+    },
+    {
+      "route": "conservatory",
+      "icons": [
+        {
+          "centerY": 50,
+          "height": 52,
+          "selector": ".world-return",
+          "width": 52,
+          "x": 1045
+        },
+        {
+          "centerY": 50,
+          "height": 52,
+          "selector": "#pocket-notebook",
+          "width": 52,
+          "x": 1109
+        }
+      ]
+    },
+    {
+      "route": "hall-of-scribbles",
+      "icons": [
+        {
+          "centerY": 50,
+          "height": 52,
+          "selector": ".world-return",
+          "width": 52,
+          "x": 1045
+        },
+        {
+          "centerY": 50,
+          "height": 52,
+          "selector": "#pocket-notebook",
+          "width": 52,
+          "x": 1109
+        }
+      ]
+    },
+    {
+      "route": "word-woods",
+      "icons": [
+        {
+          "centerY": 50,
+          "height": 52,
+          "selector": ".world-return",
+          "width": 52,
+          "x": 1045
+        },
+        {
+          "centerY": 50,
+          "height": 52,
+          "selector": "#pocket-notebook",
+          "width": 52,
+          "x": 1109
+        }
+      ]
+    },
+    {
+      "route": "courage-observatory",
+      "icons": [
+        {
+          "centerY": 50,
+          "height": 52,
+          "selector": ".world-return",
+          "width": 52,
+          "x": 1045
+        },
+        {
+          "centerY": 50,
+          "height": 52,
+          "selector": "#pocket-notebook",
+          "width": 52,
+          "x": 1109
+        }
+      ]
+    },
+    {
+      "route": "friendship-arcade",
+      "icons": [
+        {
+          "centerY": 50,
+          "height": 52,
+          "selector": ".world-return",
+          "width": 52,
+          "x": 1045
+        },
+        {
+          "centerY": 50,
+          "height": 52,
+          "selector": "#pocket-notebook",
+          "width": 52,
+          "x": 1109
+        }
+      ]
+    }
+  ],
+  "mobile": [
+    {
+      "route": "post-office",
+      "pageWidth": 320,
+      "width": 320
+    },
+    {
+      "route": "conservatory",
+      "pageWidth": 320,
+      "width": 320
+    },
+    {
+      "route": "hall-of-scribbles",
+      "pageWidth": 320,
+      "width": 320
+    },
+    {
+      "route": "word-woods",
+      "pageWidth": 320,
+      "width": 320
+    },
+    {
+      "route": "courage-observatory",
+      "pageWidth": 320,
+      "width": 320
+    },
+    {
+      "route": "friendship-arcade",
+      "pageWidth": 320,
+      "width": 320
+    },
+    {
+      "route": "post-office",
+      "pageWidth": 390,
+      "width": 390
+    },
+    {
+      "route": "conservatory",
+      "pageWidth": 390,
+      "width": 390
+    },
+    {
+      "route": "hall-of-scribbles",
+      "pageWidth": 390,
+      "width": 390
+    },
+    {
+      "route": "word-woods",
+      "pageWidth": 390,
+      "width": 390
+    },
+    {
+      "route": "courage-observatory",
+      "pageWidth": 390,
+      "width": 390
+    },
+    {
+      "route": "friendship-arcade",
+      "pageWidth": 390,
+      "width": 390
+    },
+    {
+      "route": "post-office",
+      "pageWidth": 430,
+      "width": 430
+    },
+    {
+      "route": "conservatory",
+      "pageWidth": 430,
+      "width": 430
+    },
+    {
+      "route": "hall-of-scribbles",
+      "pageWidth": 430,
+      "width": 430
+    },
+    {
+      "route": "word-woods",
+      "pageWidth": 430,
+      "width": 430
+    },
+    {
+      "route": "courage-observatory",
+      "pageWidth": 430,
+      "width": 430
+    },
+    {
+      "route": "friendship-arcade",
+      "pageWidth": 430,
+      "width": 430
+    }
+  ]
+}

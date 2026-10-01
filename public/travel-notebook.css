@@ -13,3 +13,14 @@
 .world-return:hover .world-return-compass,.world-return:focus-visible .world-return-compass{transform:rotate(14deg)}
 @media(max-width:650px){#pocket-notebook{top:10px!important;right:12px!important;font-size:12px;max-width:100px;flex-direction:column;gap:0;line-height:1.2;text-align:center}#pocket-notebook svg{width:30px;height:38px}}
 @media(prefers-reduced-motion:reduce){.world-return .world-return-compass{transition:none}.world-return:hover .world-return-compass,.world-return:focus-visible .world-return-compass{transform:none}}
+
+/* Desktop room navigation: two balanced objects, with no visible captions. */
+@media(min-width:651px){
+ header:has(>.world-return)::after{content:"";display:block;width:0;height:44px}
+ .world-return,#pocket-notebook{position:absolute!important;top:24px!important;bottom:auto!important;left:auto!important;margin:0!important;padding:0!important;width:52px;height:52px;min-width:52px;min-height:52px;display:flex!important;align-items:center;justify-content:center;gap:0;transform:none}
+ .world-return{right:88px!important;z-index:5}
+ #pocket-notebook{right:24px!important}
+ #pocket-notebook span{display:none}
+ #pocket-notebook svg{flex:none;width:42px;height:52px}
+ .world-return .world-return-compass{flex:none;width:48px;height:48px}
+}
