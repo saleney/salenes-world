@@ -1,0 +1,12 @@
+/* Local-only code-drawn backyard: no raster landscape. */
+.backyard{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.landscape-depth,.garden-drawing{display:none!important}
+.garden-window{background:transparent}.garden{z-index:1;background:transparent}
+.garden-window:after{background:radial-gradient(ellipse,transparent 55%,#9c82650a)}
+@media(max-width:600px){.backyard-fence{opacity:.75}.backyard{height:100%}}
+
+/* Brown soil into muted green grass, with no hard horizon or color seam. */
+.garden-window{background:linear-gradient(180deg,transparent 9%,#a7b78a0b 30%,#a0b17d16 44%,#ae9a7817 64%,#9b77571a 100%)}
+.background-grass{pointer-events:none}
+@media(max-width:600px){.background-grass{opacity:.1}}
+.garden::after{display:none!important}
